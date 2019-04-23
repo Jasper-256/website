@@ -4,13 +4,12 @@ body {
 }
 
 h1 {
-    font-size: 200%
+    font-size: 3rem
 }
 
 .center {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    max-width: 300pt;
-    width: 90%
+    width: 70%
 }
