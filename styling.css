@@ -2,3 +2,9 @@ body {
     color: darkgoldenrod;
     text-align: center;
 }
+
+.center {
+    margin: auto;
+    width: 95%;
+    max-width: 300pt;
+}
