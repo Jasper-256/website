@@ -3,13 +3,9 @@ body {
     text-align: center;
 }
 
-h1 {
-    font-size: 3rem
-}
-
 .center {
-    display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 70%
+    max-width: 300pt;
+    width: 90%
 }
