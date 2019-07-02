@@ -1,9 +1,25 @@
 body {
-    color: darkgreen;
+    color: green;
     text-align: center;
 }
 
 a {
     color: blue;
     text-decoration: none;
+}
+
+hr {
+    border: none;
+    height: 2px;
+    background-color: rgb(208, 208, 208)
+}
+
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: rgb(20, 20, 20);
+    }
+    
+    hr {
+        background-color: rgb(48, 48, 48);
+    }
 }
