@@ -9,7 +9,10 @@ function updateTime() {
     var seconds = date.getSeconds();
     var secondsday = seconds / 86400;
 
-    var decimal = hoursday + minutesday + secondsday;
+    var milliseconds = date.getMilliseconds();
+    var millisecondsday = milliseconds / 86400000;
+
+    var decimal = hoursday + minutesday + secondsday + millisecondsday;
     var rounded = Math.round(decimal * 100000) / 1000;
     var string = rounded.toString() + '%';
     document.getElementById("time").innerHTML = string;

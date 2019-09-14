@@ -1,6 +1,9 @@
 body {
-    color: green;
     text-align: center;
+}
+
+h1 {
+    color: green;
 }
 
 a {
@@ -16,10 +19,11 @@ hr {
 
 @media (prefers-color-scheme: dark) {
     body {
-        background-color: rgb(20, 20, 20);
+        background-color: rgb(16, 16, 16);
+        color: rgb(180, 180, 180);
     }
     
     hr {
-        background-color: rgb(48, 48, 48);
+        background-color: rgb(56, 56, 56);
     }
 }
