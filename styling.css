@@ -14,7 +14,7 @@ a {
 hr {
     border: none;
     height: 2px;
-    background-color: rgb(208, 208, 208)
+    background-color: rgb(208, 208, 208);
 }
 
 @media (prefers-color-scheme: dark) {
