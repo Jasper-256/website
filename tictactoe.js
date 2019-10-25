@@ -51,7 +51,7 @@ function c(sq) {
     }
 }
 
-// Clears the bord
+// Clear the bord
 function clr() {
     console.log("clear");
     r(1);
@@ -70,6 +70,7 @@ function clr() {
 }
 
 
+// Checking for conditions (wins)
 function check() {
     checkForDraws();
     checkForXWins();
@@ -93,25 +94,69 @@ function checkForDraws() {
 }
 
 function checkForXWins() {
-    if(q(1) == "x" && q(2) == "x" && q(3) == "x") {
+    let l = "x";
+
+    // Horizontal
+    if(q(1) == l && q(2) == l && q(3) == l) {
         xWins();
     }
-    if(q(4) == "x" && q(5) == "x" && q(6) == "x") {
+    if(q(4) == l && q(5) == l && q(6) == l) {
         xWins();
     }
-    if(q(7) == "x" && q(8) == "x" && q(9) == "x") {
+    if(q(7) == l && q(8) == l && q(9) == l) {
+        xWins();
+    }
+
+    // Vertical
+    if(q(1) == l && q(4) == l && q(7) == l) {
+        xWins();
+    }
+    if(q(2) == l && q(5) == l && q(8) == l) {
+        xWins();
+    }
+    if(q(3) == l && q(6) == l && q(9) == l) {
+        xWins();
+    }
+
+    // Cross
+    if(q(1) == l && q(5) == l && q(9) == l) {
+        xWins();
+    }
+    if(q(3) == l && q(5) == l && q(7) == l) {
         xWins();
     }
 }
 
 function checkForOWins() {
-    if(q(1) == "o" && q(2) == "o" && q(3) == "o") {
+    let l = "o";
+
+    // Horizontal
+    if(q(1) == l && q(2) == l && q(3) == l) {
         oWins();
     }
-    if(q(4) == "o" && q(5) == "o" && q(6) == "o") {
+    if(q(4) == l && q(5) == l && q(6) == l) {
         oWins();
     }
-    if(q(7) == "o" && q(8) == "o" && q(9) == "o") {
+    if(q(7) == l && q(8) == l && q(9) == l) {
+        oWins();
+    }
+
+    // Vertical
+    if(q(1) == l && q(4) == l && q(7) == l) {
+        oWins();
+    }
+    if(q(2) == l && q(5) == l && q(8) == l) {
+        oWins();
+    }
+    if(q(3) == l && q(6) == l && q(9) == l) {
+        oWins();
+    }
+
+    // Cross
+    if(q(1) == l && q(5) == l && q(9) == l) {
+        oWins();
+    }
+    if(q(3) == l && q(5) == l && q(7) == l) {
         oWins();
     }
 }
