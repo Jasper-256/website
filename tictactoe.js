@@ -41,24 +41,138 @@ let gameOver = false;
 
 function c(sq) {
     if(q(sq) == "r" && gameOver == false) {
+        check();
+
         x(sq);
+
+        check();
+
+        // Needs better gameover detection
         if(q(1) == "r" || q(2) == "r" || q(3) == "r" || q(4) == "r" || q(5) == "r" || q(6) == "r" || q(7) == "r" || q(8) == "r" || q(9) == "r") {
             ai();
         }
 
-        // if(yourTurn) {
-        //     x(sq);
-        // } else {
-        //     ai();
-        // }
-        // yourTurn = !yourTurn;
         check();
+
         console.log("done");
     }
 }
 
+// Checks if a square is goable (empty) or not
+function goable(sq) {
+    if(q(sq) == "r") {
+        sqToGo = sq;
+    }
+}
+
+
+let sqToGo = 1
+
+// AI! (Not really...)
 function ai() {
-    let sqToGo = Math.floor(Math.random() * 9) + 1;
+    if(gameOver == true) {return;}
+
+    sqToGo = Math.floor(Math.random() * 9) + 1;
+
+    let l = "x";
+
+    // Horizontal
+    if(q(1) == l && q(2) == l) {
+        goable(3);
+    }
+    if(q(4) == l && q(5) == l) {
+        goable(6);
+    }
+    if(q(7) == l && q(8) == l) {
+        goable(9);
+    }
+
+    // Vertical
+    if(q(1) == l && q(4) == l) {
+        goable(7);
+    }
+    if(q(2) == l && q(5) == l) {
+        goable(8);
+    }
+    if(q(3) == l && q(6) == l) {
+        goable(9);
+    }
+
+    // Cross
+    if(q(1) == l && q(5) == l) {
+        goable(9);
+    }
+    if(q(3) == l && q(5) == l) {
+        goable(7);
+    }
+
+
+
+
+
+    // Horizontal
+    if(q(2) == l && q(3) == l) {
+        goable(1);
+    }
+    if(q(5) == l && q(6) == l) {
+        goable(4);
+    }
+    if(q(8) == l && q(9) == l) {
+        goable(7);
+    }
+
+    // Vertical
+    if(q(4) == l && q(7) == l) {
+        goable(1);
+    }
+    if(q(5) == l && q(8) == l) {
+        goable(2);
+    }
+    if(q(6) == l && q(9) == l) {
+        goable(3);
+    }
+
+    // Cross
+    if(q(5) == l && q(9) == l) {
+        goable(1);
+    }
+    if(q(5) == l && q(7) == l) {
+        goable(3);
+    }
+
+
+
+
+
+    // Horizontal
+    if(q(1) == l && q(3) == l) {
+        goable(2);
+    }
+    if(q(4) == l && q(6) == l) {
+        goable(5);
+    }
+    if(q(7) == l && q(9) == l) {
+        goable(8);
+    }
+
+    // Vertical
+    if(q(1) == l && q(7) == l) {
+        goable(4);
+    }
+    if(q(2) == l && q(8) == l) {
+        goable(5);
+    }
+    if(q(3) == l && q(9) == l) {
+        goable(6);
+    }
+
+    // Cross
+    if(q(1) == l && q(9) == l) {
+        goable(5);
+    }
+    if(q(3) == l && q(7) == l) {
+        goable(5);
+    }
 
     console.log("ai " + sqToGo);
 
@@ -183,13 +297,13 @@ function checkForOWins() {
 }
 
 function xWins() {
-    document.getElementById("winloss").innerHTML = "X Wins!";
     gameOver = true;
+    document.getElementById("winloss").innerHTML = "X Wins!";
 }
 
 function oWins() {
-    document.getElementById("winloss").innerHTML = "O Wins!";
     gameOver = true;
+    document.getElementById("winloss").innerHTML = "O Wins!";
 }
 
 
