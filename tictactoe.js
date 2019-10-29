@@ -36,18 +36,39 @@ function q(sq) {
 
 
 
-let yourTurn = true;
+// let yourTurn = true;
 let gameOver = false;
 
 function c(sq) {
     if(q(sq) == "r" && gameOver == false) {
-        if(yourTurn) {
-            x(sq);
-        } else {
-            o(sq);
+        x(sq);
+        if(q(1) == "r" || q(2) == "r" || q(3) == "r" || q(4) == "r" || q(5) == "r" || q(6) == "r" || q(7) == "r" || q(8) == "r" || q(9) == "r") {
+            ai();
         }
-        yourTurn = !yourTurn;
+
+        // if(yourTurn) {
+        //     x(sq);
+        // } else {
+        //     ai();
+        // }
+        // yourTurn = !yourTurn;
         check();
+        console.log("done");
+    }
+}
+
+function ai() {
+    let sqToGo = Math.floor(Math.random() * 9) + 1;
+
+    console.log("ai " + sqToGo);
+
+    if(q(sqToGo) == "r") {
+        o(sqToGo);
+        console.log("went");
+    } else {
+        console.log("again");
+        ai();
+        return;
     }
 }
 
@@ -63,7 +84,7 @@ function clr() {
     r(7);
     r(8);
     r(9);
-    yourTurn = true;
+    // yourTurn = true;
     gameOver = false;
     document.getElementById("winloss").innerHTML = "&nbsp";
     check();
