@@ -48,9 +48,7 @@ function c(sq) {
         check();
 
         // Needs better gameover detection
-        if(q(1) == "r" || q(2) == "r" || q(3) == "r" || q(4) == "r" || q(5) == "r" || q(6) == "r" || q(7) == "r" || q(8) == "r" || q(9) == "r") {
-            ai();
-        }
+        ai();
 
         check();
 
@@ -66,7 +64,7 @@ function goable(sq) {
 }
 
 
-let sqToGo = 1
+let sqToGo = 5
 
 // AI! (Not really...)
 function ai() {
@@ -74,105 +72,225 @@ function ai() {
 
     sqToGo = Math.floor(Math.random() * 9) + 1;
 
-    let l = "x";
+    let temp = Math.floor(Math.random() * 4) + 1;
+    switch(temp) {
+        case 1:
+            goable(1);
+            break;
+        case 2:
+            goable(3);
+            break;
+        case 3:
+            goable(7);
+            break;
+        case 4:
+            goable(9);
+            break;
+    }
+
+    goable(5);
+
+
 
     // Horizontal
-    if(q(1) == l && q(2) == l) {
+    if(q(1) == "x" && q(2) == "x") {
         goable(3);
     }
-    if(q(4) == l && q(5) == l) {
+    if(q(4) == "x" && q(5) == "x") {
         goable(6);
     }
-    if(q(7) == l && q(8) == l) {
+    if(q(7) == "x" && q(8) == "x") {
         goable(9);
     }
 
     // Vertical
-    if(q(1) == l && q(4) == l) {
+    if(q(1) == "x" && q(4) == "x") {
         goable(7);
     }
-    if(q(2) == l && q(5) == l) {
+    if(q(2) == "x" && q(5) == "x") {
         goable(8);
     }
-    if(q(3) == l && q(6) == l) {
+    if(q(3) == "x" && q(6) == "x") {
         goable(9);
     }
 
     // Cross
-    if(q(1) == l && q(5) == l) {
+    if(q(1) == "x" && q(5) == "x") {
         goable(9);
     }
-    if(q(3) == l && q(5) == l) {
+    if(q(3) == "x" && q(5) == "x") {
         goable(7);
     }
-
-
 
 
 
     // Horizontal
-    if(q(2) == l && q(3) == l) {
+    if(q(2) == "x" && q(3) == "x") {
         goable(1);
     }
-    if(q(5) == l && q(6) == l) {
+    if(q(5) == "x" && q(6) == "x") {
         goable(4);
     }
-    if(q(8) == l && q(9) == l) {
+    if(q(8) == "x" && q(9) == "x") {
         goable(7);
     }
 
     // Vertical
-    if(q(4) == l && q(7) == l) {
+    if(q(4) == "x" && q(7) == "x") {
         goable(1);
     }
-    if(q(5) == l && q(8) == l) {
+    if(q(5) == "x" && q(8) == "x") {
         goable(2);
     }
-    if(q(6) == l && q(9) == l) {
+    if(q(6) == "x" && q(9) == "x") {
         goable(3);
     }
 
     // Cross
-    if(q(5) == l && q(9) == l) {
+    if(q(5) == "x" && q(9) == "x") {
         goable(1);
     }
-    if(q(5) == l && q(7) == l) {
+    if(q(5) == "x" && q(7) == "x") {
         goable(3);
     }
 
 
 
-
-
     // Horizontal
-    if(q(1) == l && q(3) == l) {
+    if(q(1) == "x" && q(3) == "x") {
         goable(2);
     }
-    if(q(4) == l && q(6) == l) {
+    if(q(4) == "x" && q(6) == "x") {
         goable(5);
     }
-    if(q(7) == l && q(9) == l) {
+    if(q(7) == "x" && q(9) == "x") {
         goable(8);
     }
 
     // Vertical
-    if(q(1) == l && q(7) == l) {
+    if(q(1) == "x" && q(7) == "x") {
         goable(4);
     }
-    if(q(2) == l && q(8) == l) {
+    if(q(2) == "x" && q(8) == "x") {
         goable(5);
     }
-    if(q(3) == l && q(9) == l) {
+    if(q(3) == "x" && q(9) == "x") {
         goable(6);
     }
 
     // Cross
-    if(q(1) == l && q(9) == l) {
+    if(q(1) == "x" && q(9) == "x") {
         goable(5);
     }
-    if(q(3) == l && q(7) == l) {
+    if(q(3) == "x" && q(7) == "x") {
         goable(5);
     }
+
+
+
+
+
+
+
+
+
+
+
+    // Horizontal
+    if(q(1) == "o" && q(2) == "o") {
+        goable(3);
+    }
+    if(q(4) == "o" && q(5) == "o") {
+        goable(6);
+    }
+    if(q(7) == "o" && q(8) == "o") {
+        goable(9);
+    }
+
+    // Vertical
+    if(q(1) == "o" && q(4) == "o") {
+        goable(7);
+    }
+    if(q(2) == "o" && q(5) == "o") {
+        goable(8);
+    }
+    if(q(3) == "o" && q(6) == "o") {
+        goable(9);
+    }
+
+    // Cross
+    if(q(1) == "o" && q(5) == "o") {
+        goable(9);
+    }
+    if(q(3) == "o" && q(5) == "o") {
+        goable(7);
+    }
+
+
+
+    // Horizontal
+    if(q(2) == "o" && q(3) == "o") {
+        goable(1);
+    }
+    if(q(5) == "o" && q(6) == "o") {
+        goable(4);
+    }
+    if(q(8) == "o" && q(9) == "o") {
+        goable(7);
+    }
+
+    // Vertical
+    if(q(4) == "o" && q(7) == "o") {
+        goable(1);
+    }
+    if(q(5) == "o" && q(8) == "o") {
+        goable(2);
+    }
+    if(q(6) == "o" && q(9) == "o") {
+        goable(3);
+    }
+
+    // Cross
+    if(q(5) == "o" && q(9) == "o") {
+        goable(1);
+    }
+    if(q(5) == "o" && q(7) == "o") {
+        goable(3);
+    }
+
+
+
+    // Horizontal
+    if(q(1) == "o" && q(3) == "o") {
+        goable(2);
+    }
+    if(q(4) == "o" && q(6) == "o") {
+        goable(5);
+    }
+    if(q(7) == "o" && q(9) == "o") {
+        goable(8);
+    }
+
+    // Vertical
+    if(q(1) == "o" && q(7) == "o") {
+        goable(4);
+    }
+    if(q(2) == "o" && q(8) == "o") {
+        goable(5);
+    }
+    if(q(3) == "o" && q(9) == "o") {
+        goable(6);
+    }
+
+    // Cross
+    if(q(1) == "o" && q(9) == "o") {
+        goable(5);
+    }
+    if(q(3) == "o" && q(7) == "o") {
+        goable(5);
+    }
+
+
 
     console.log("ai " + sqToGo);
 
