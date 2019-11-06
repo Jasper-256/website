@@ -60,6 +60,9 @@ function c(sq) {
 function goable(sq) {
     if(q(sq) == "r") {
         sqToGo = sq;
+        return true;
+    } else {
+        return false;
     }
 }
 
@@ -72,21 +75,82 @@ function ai() {
 
     sqToGo = Math.floor(Math.random() * 9) + 1;
 
-    let temp = Math.floor(Math.random() * 4) + 1;
-    switch(temp) {
-        case 1:
-            goable(1);
-            break;
-        case 2:
-            goable(3);
-            break;
-        case 3:
-            goable(7);
-            break;
-        case 4:
-            goable(9);
-            break;
+
+    // Goes for corner square
+    if (q(1) == "r" || q(3) == "r" || q(7) == "r" || q(9) == "r") {
+        let leave = false;
+
+        while (!leave) {
+            let temp = Math.floor(Math.random() * 4) + 1;
+            switch(temp) {
+                case 1:
+                    goable(1);
+                    if (goable(1)) {
+                        leave = true;
+                    }
+                    break;
+                case 2:
+                    goable(3);
+                    if (goable(3)) {
+                        leave = true;
+                    }
+                    break;
+                case 3:
+                    goable(7);
+                    if (goable(7)) {
+                        leave = true;
+                    }
+                    break;
+                case 4:
+                    goable(9);
+                    if (goable(9)) {
+                        leave = true;
+                    }
+                    break;
+            }
+        }
     }
+
+    if ((q(1) == "x" && q(9) == "x") || (q(3) == "x" && q(7) == "x")) {
+        if (q(2) == "r" || q(4) == "r" || q(6) == "r" || q(8) == "r") {
+            let leave = false;
+
+            while (!leave) {
+                let temp = Math.floor(Math.random() * 4) + 1;
+                switch(temp) {
+                    case 1:
+                        goable(2);
+                        if (goable(2)) {
+                            leave = true;
+                        }
+                        break;
+                    case 2:
+                        goable(4);
+                        if (goable(4)) {
+                            leave = true;
+                        }
+                        break;
+                    case 3:
+                        goable(6);
+                        if (goable(6)) {
+                            leave = true;
+                        }
+                        break;
+                    case 4:
+                        goable(8);
+                        if (goable(8)) {
+                            leave = true;
+                        }
+                        break;
+                }
+            }
+        }
+    }
+
+    // goable(1);
+    // goable(3);
+    // goable(7);
+    // goable(9);
 
     goable(5);
 
@@ -335,7 +399,7 @@ function checkClear() {
     if(gameOver == true) {
         document.getElementById("clear").innerHTML = "Play Again";
     } else {
-        document.getElementById("clear").innerHTML = "Clear";
+        document.getElementById("clear").innerHTML = "Reset";
     }
 }
 
@@ -416,12 +480,12 @@ function checkForOWins() {
 
 function xWins() {
     gameOver = true;
-    document.getElementById("winloss").innerHTML = "X Wins!";
+    document.getElementById("winloss").innerHTML = "Ummm... You just won. Computer is extremely confused.";
 }
 
 function oWins() {
     gameOver = true;
-    document.getElementById("winloss").innerHTML = "O Wins!";
+    document.getElementById("winloss").innerHTML = "The Computer Wins";
 }
 
 
