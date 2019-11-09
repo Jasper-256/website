@@ -147,6 +147,32 @@ function ai() {
         }
     }
 
+    let cornersToGo = [];
+    if (q(2) == "x") {
+        cornersToGo.push(1);
+        cornersToGo.push(3);
+    }
+    if (q(4) == "x") {
+        cornersToGo.push(1);
+        cornersToGo.push(7);
+    }
+
+    if (q(6) == "x") {
+        cornersToGo.push(3);
+        cornersToGo.push(9);
+    }
+
+    if (q(8) == "x") {
+        cornersToGo.push(7);
+        cornersToGo.push(9);
+    }
+
+    while (cornersToGo.length != 0) {
+        let randomCorner = Math.floor(Math.random() * cornersToGo.length);
+        goable(cornersToGo[randomCorner]);
+        cornersToGo.splice(randomCorner, 1);
+    }
+
     // goable(1);
     // goable(3);
     // goable(7);
