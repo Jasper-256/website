@@ -36,7 +36,7 @@ function q(sq) {
 
 
 
-// let yourTurn = true;
+let youFirst = true;
 let gameOver = false;
 
 function c(sq) {
@@ -45,9 +45,10 @@ function c(sq) {
 
         x(sq);
 
+        document.getElementById("winloss").innerHTML = "&nbsp";
+
         check();
 
-        // Needs better gameover detection
         ai();
 
         check();
@@ -382,6 +383,13 @@ function ai() {
 
 
 
+
+    if (q(1) == "r" && q(2) == "r" && q(3) == "r" && q(4) == "r" && q(5) == "r" && q(6) == "r" && q(7) == "r" && q(8) == "r" && q(9) == "r") {
+        sqToGo = Math.floor(Math.random() * 9) + 1;
+    }
+
+
+
     console.log("ai " + sqToGo);
 
     if(q(sqToGo) == "r") {
@@ -406,9 +414,14 @@ function clr() {
     r(7);
     r(8);
     r(9);
-    // yourTurn = true;
     gameOver = false;
-    document.getElementById("winloss").innerHTML = "&nbsp";
+    youFirst = !youFirst;
+    if (youFirst) {
+        document.getElementById("winloss").innerHTML = "You Go First";
+    } else {
+        document.getElementById("winloss").innerHTML = "Computer Goes First";
+        ai();
+    }
     check();
 }
 
@@ -430,7 +443,7 @@ function checkClear() {
 }
 
 function checkForDraws() {
-    if(q(1) != "r" && q(2) != "r" && q(3) != "r" && q(4) != "r" && q(5) != "r" && q(6) != "r" && q(7) != "r" && q(8) != "r" && q(9) != "r") {
+    if (q(1) != "r" && q(2) != "r" && q(3) != "r" && q(4) != "r" && q(5) != "r" && q(6) != "r" && q(7) != "r" && q(8) != "r" && q(9) != "r") {
         document.getElementById("winloss").innerHTML = "It's a Draw";
         gameOver = true;
     }
