@@ -538,7 +538,7 @@ function setLight() {
 }
 
 function setDark() {
-    document.body.style.backgroundColor = "1a1a1a";
+    document.body.style.backgroundColor = "#1a1a1a";
     var cols = document.getElementsByTagName("BODY");
     for(i = 0; i < cols.length; i++) {
         cols[i].style.color = "white";
