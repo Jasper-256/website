@@ -1,7 +1,11 @@
 let rotation = 0;
 let threshold = 20;
 
+let gameOver = false;
+let sigChar = "f"
+
 function move() {
+    if(gameOver) {return;}
     let charOn1 = detChar("1");
     let track = document.getElementById("track").textContent;
 
@@ -30,12 +34,12 @@ function move() {
 
     // replace = 17;
     // track = track.substr(0, replace) + "x" + track.substr(replace + 1);
-    let gameOver = false;
+    let gameOverLocal = false;
 
     if(charOn1 && track[16] == "|") {
-        gameOver = true;
+        gameOverLocal = true;
     } else {
-        gameOver = false;
+        gameOverLocal = false;
     }
     
     document.getElementById("track").innerHTML = track;
@@ -44,15 +48,19 @@ function move() {
     rotation++;
 
     putChar("1", charOn1);
-    if(gameOver) {
-        gameOver();
+
+    if(gameOverLocal) {
+        gameOverFunc();
     }
 }
 
-function gameOver() {
+function gameOverFunc() {
+    gameOver = true;
     document.getElementById("title").innerHTML = "Game Over";
     document.getElementById("button").innerHTML = "Play Again";
     document.getElementById("track").innerHTML = "________________________________________________________________________________________________________________________________";
+    document.getElementById("1").innerHTML = "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp";
+    putChar("1", true);
     console.log("game over");
 }
 
@@ -63,7 +71,7 @@ function run() {
 function putChar(on, add) {
     let arr = document.getElementById(on).textContent.split("");
     if(add) {
-        arr[16] = "f";
+        arr[16] = sigChar;
     } else {
         arr[16] = "&nbsp";
     }
@@ -73,7 +81,7 @@ function putChar(on, add) {
 
 function detChar(on) {
     let arr = document.getElementById(on).textContent.split("");
-    if(arr[16] == "f") {
+    if(arr[16] == sigChar) {
         return true;
     } else {
         return false;
@@ -101,13 +109,24 @@ function jump3() {
 
 document.onkeypress = function(e) {
     e = e || window.event;
-    if(e.key == " " || e.key == "j") {
-        buttonClicked();
+    // buttonClicked();
+    let localCharOn173 = detChar("1");
+    if(e.key.length == 1 && e.key != " ") {
+        sigChar = e.key;
+    } else {
+        console.log("wierd charicter");
     }
+
+    console.log(sigChar);
+    if(localCharOn173) {
+        putChar("1", true);
+    }
+    buttonClicked();
 };
 
 function buttonClicked() {
     if(document.getElementById("title").innerText == "Game Over") {
+        gameOver = false;
         document.getElementById("title").innerHTML = "Playing";
         document.getElementById("button").innerHTML = "Jump";
     } else {
@@ -115,6 +134,7 @@ function buttonClicked() {
         if(detChar("1")) {
             putChar("1", false);
             putChar("2", true);
+            console.log(sigChar);
             setTimeout(jump1, 200);
             setTimeout(jump2, 400);
             setTimeout(jump3, 600);
