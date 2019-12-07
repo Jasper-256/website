@@ -20,7 +20,7 @@ hr {
 
 @media (prefers-color-scheme: dark) {
     body {
-        background-color: rgb(26, 26, 26);
+        background-color: #1a1a1a;
         color: rgb(180, 180, 180);
     }
     
