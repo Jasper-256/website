@@ -1,23 +1,23 @@
+let score = 0;
+let highScore = localStorage.getItem("hi");
+document.getElementById("score").innerHTML = "HI " + highScore + " " + score;
 let rotation = 0;
 let threshold = 20;
 
 let gameOver = false;
-let sigChar = "f"
+let sigChar = "j"
 
 function move() {
+    run();
     if(gameOver) {return;}
     let charOn1 = detChar("1");
     let track = document.getElementById("track").textContent;
 
     let first = "r"; // track.charAt(0);
 
-    if(Math.floor(Math.random() * 20) == 0) {// rotation == threshold) { // Math.floor(Math.random() * 2) + 8) {
+    if(((rotation > threshold) && (Math.floor(Math.random() * 15) == 0)) || score == 0) { // rotation == threshold) { // Math.floor(Math.random() * 2) + 8) {
         first = "|";
         rotation = 0;
-        threshold = threshold - Math.floor(Math.random() * 2);
-        if(threshold < 4) {
-            threshold = 20;
-        }
     } else {
         first = "_"
     }
@@ -49,6 +49,9 @@ function move() {
 
     putChar("1", charOn1);
 
+    score++;
+    document.getElementById("score").innerHTML = "HI " + highScore + " " + score;
+
     if(gameOverLocal) {
         gameOverFunc();
     }
@@ -61,11 +64,19 @@ function gameOverFunc() {
     document.getElementById("track").innerHTML = "________________________________________________________________________________________________________________________________";
     document.getElementById("1").innerHTML = "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp";
     putChar("1", true);
+    if(score > highScore) {
+        highScore = score;
+        localStorage.setItem("hi", highScore);
+    }
+    score = 0;
     console.log("game over");
 }
 
+let intervalMS = 40;
 function run() {
-    setInterval(move, 50);
+    intervalMS = ((1 / ((score / 10) + 100)) * 2500) + 20;
+    setTimeout(move, intervalMS);
+    console.log(intervalMS);
 }
 
 function putChar(on, add) {
@@ -109,19 +120,22 @@ function jump3() {
 
 document.onkeypress = function(e) {
     e = e || window.event;
-    // buttonClicked();
-    let localCharOn173 = detChar("1");
-    if(e.key.length == 1 && e.key != " ") {
-        sigChar = e.key;
-    } else {
-        console.log("wierd charicter");
+    if(e.key == " " || String(e.key) == "Enter" || e.key == "j") {
+        buttonClicked();
     }
+    console.log(e.key);
+    // let localCharOn173 = detChar("1");
+    // if(e.key.length == 1 && e.key != " ") {
+    //     sigChar = e.key;
+    // } else {
+    //     console.log("wierd charicter");
+    // }
 
-    console.log(sigChar);
-    if(localCharOn173) {
-        putChar("1", true);
-    }
-    buttonClicked();
+    // console.log(sigChar);
+    // if(localCharOn173) {
+    //     putChar("1", true);
+    // }
+    // buttonClicked();
 };
 
 function buttonClicked() {
