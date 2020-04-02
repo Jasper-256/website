@@ -15,6 +15,7 @@ $(document).on('click', '#submit-form', function(e) {
         success: function() {
             document.getElementById("status").innerHTML = "Sent!";
             setTimeout("sentTimedOut()", 1000);
+            resetWorker();
         }
     })
 })
@@ -38,6 +39,17 @@ function startWorker() {
     } else {
         document.getElementById("history").innerHTML = "Sorry, your browser does not support Web Workers...";
     }
+}
+
+function stopWorker() { 
+    w.terminate();
+    w = undefined;
+}
+
+function resetWorker() {
+    stopWorker();
+    startWorker();
+    console.log("reset worker")
 }
 
 window.onload = startWorker();
