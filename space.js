@@ -2,12 +2,14 @@ var canvas = document.getElementById("canvas");
 var context = canvas.getContext("2d");
 
 var redSquare;
+var xpCounter;
 var myObstacles = [];
 var bullets = [];
 
 
 // Changeable charicteristics to customize the game:
 var mouseDeadZone = 25;
+var xpOffset = 40;
 
 var playerWidth = 50;
 var playerHeight = 20;
@@ -16,7 +18,7 @@ var movementSpeed = 3;
 var bulletSpeed = 10;
 var bulletRate = 2;
 var bulletVariationDegrees = 15;
-var maxBulletLifetime = 500; // (10 seconds)
+var maxBulletLifetime = 180; // 3 secs
 
 var minEnemySize = 10;
 var maxEnemySize = 20;
@@ -26,9 +28,20 @@ var mapSize = 4000;
 // End of changeable charicterestics
 
 
+var xp = 0;
+var level = 0;
+
 var currentEnemyNo = 0;
 var bulletNumber = 0;
 var started = false;
+
+var mouseDown = false;
+
+var autofire = false;
+var autofireKeyDown = false;
+
+var autospin = false;
+var autospinKeyDown = false;
 
 var translateX = 0;
 var translateY = 0;
@@ -38,13 +51,22 @@ var mouseY = 0;
 
 var keys = [];
 
-var interval = setInterval(updateGameArea, 20);
+var interval = setInterval(updateGameArea, 16.667); // 60 FPS
 
 
 document.addEventListener('mousemove', function(e) {
     mouseX = e.pageX;
     mouseY = e.pageY;
 })
+
+document.addEventListener('mousedown', function(e) {
+    mouseDown = true;
+})
+
+document.addEventListener('mouseup', function(e) {
+    mouseDown = false;
+})
+
 
 document.addEventListener('keydown', function(e) {
     keys[e.keyCode] = true;
@@ -55,10 +77,12 @@ document.addEventListener('keyup', function(e) {
 })
 
 
+
 function startGame() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
     redSquare = new component(playerWidth, playerHeight, "red", canvas.width / 2, canvas.height / 2);
+    xpCounter = new component("30px", "Arial", "black", 0, 0, "text"); // x and y for this are set in updateGameArea()
 }
 
 function clear() {
@@ -72,7 +96,8 @@ startGame();
 
 
 
-function component(width, height, color, x, y) {
+function component(width, height, color, x, y, type) {
+    this.type = type;
     this.width = width;
     this.height = height;
     this.angle = 0;
@@ -85,14 +110,20 @@ function component(width, height, color, x, y) {
     
     this.update = function() {
         ctx = context;
-        ctx.save();
-        this.x += this.speedX;
-        this.y += this.speedY;
-        ctx.translate(this.x, this.y);
-        ctx.rotate(this.angle);
-        ctx.fillStyle = color;
-        ctx.fillRect(this.width / -2, this.height / -2, this.width, this.height);
-        ctx.restore();
+        if (this.type == "text") {
+            ctx.font = this.width + " " + this.height;
+            ctx.fillStyle = color;
+            ctx.fillText(this.text, this.x, this.y);
+        } else {
+            ctx.save();
+            this.x += this.speedX;
+            this.y += this.speedY;
+            ctx.translate(this.x, this.y);
+            ctx.rotate(this.angle);
+            ctx.fillStyle = color;
+            ctx.fillRect(this.width / -2, this.height / -2, this.width, this.height);
+            ctx.restore();
+        }
     }
 
     this.updateBullets = function() {
@@ -113,22 +144,27 @@ function component(width, height, color, x, y) {
     }
 
     this.crashWith = function(otherobj) {
-        var myleft = this.x;
-        var myright = this.x + (this.width);
-        var mytop = this.y;
-        var mybottom = this.y + (this.height);
-        var otherleft = otherobj.x;
-        var otherright = otherobj.x + (otherobj.width);
-        var othertop = otherobj.y;
-        var otherbottom = otherobj.y + (otherobj.height);
-        var crash = true;
-        if ((mybottom < othertop) ||
-        (mytop > otherbottom) ||
-        (myright < otherleft) ||
-        (myleft > otherright)) {
-            crash = false;
+        try {
+            var myleft = this.x;
+            var myright = this.x + (this.width);
+            var mytop = this.y;
+            var mybottom = this.y + (this.height);
+            var otherleft = otherobj.x;
+            var otherright = otherobj.x + (otherobj.width);
+            var othertop = otherobj.y;
+            var otherbottom = otherobj.y + (otherobj.height);
+            var crash = true;
+            if ((mybottom < othertop) ||
+            (mytop > otherbottom) ||
+            (myright < otherleft) ||
+            (myleft > otherright)) {
+                crash = false;
+            }
+            return crash;
+        } catch(error) {
+            console.log("component.crashWith() function error: " + error);
+            return false;
         }
-        return crash;
     }
 
 }
@@ -146,6 +182,7 @@ function updateGameArea() {
                 myObstacles.splice(i, 1);
                 bullets.splice(b, 1);
                 currentEnemyNo -= 1;
+                xp += 1;
             }
         }
     }
@@ -159,9 +196,24 @@ function updateGameArea() {
         // console.log(mouseCenterX + ", " + mouseCenterY);
 
 
+        if (keys && keys[67] && !autospinKeyDown) { // 67 is c key
+            autospin = !autospin;
+            autospinKeyDown = true;
+        }
+    
+        if (keys && !keys[67]) { // 67 is c key
+            autospinKeyDown = false;
+        }
+
+
         function toRadians(degrees) {
+            // try {
             return degrees * Math.PI / 180;
-        };
+            // } catch(error) {
+            //     console.log("toRadians() function error: " + error);
+            //     return 0;
+            // }
+        }
 
         function toDegrees(radians) {
             return radians * 180 / Math.PI;
@@ -180,8 +232,12 @@ function updateGameArea() {
 
         distance = Math.sqrt((mouseCenterX * mouseCenterX) + (mouseCenterY * mouseCenterY));
         // console.log(distance);
-
-        redSquare.angle = toRadians(angle(0, 0, mouseCenterX, mouseCenterY));
+        
+        if (!autospin) {
+            redSquare.angle = toRadians(angle(0, 0, mouseCenterX, mouseCenterY));
+        } else {
+            redSquare.angle += toRadians(1);
+        }
 
         if (distance >= mouseDeadZone) {
             redSquare.speed = movementSpeed;
@@ -201,11 +257,26 @@ function updateGameArea() {
         started = true;
     }
 
-    if (keys && keys[32]) { // space pressed
+    if (keys && keys[69] && !autofireKeyDown) {
+        autofire = !autofire;
+        autofireKeyDown = true;
+    }
+
+    if (keys && !keys[69]) {
+        autofireKeyDown = false;
+    }
+
+    if ((keys && keys[32]) || mouseDown || autofire) { // space pressed
         if (bulletNumber % bulletRate == 0) {
             if ((redSquare.angle != 0) || started) {
                 bullets.push(new component(5, 5, "blue", centerX, centerY));
-                var shootAngle = redSquare.angle + toRadians(Math.floor(Math.random() * bulletVariationDegrees) - (bulletVariationDegrees / 2));
+
+                var shootAngle = redSquare.angle;
+                try {
+                    shootAngle += toRadians((Math.random() * bulletVariationDegrees) - (bulletVariationDegrees / 2));
+                } catch(error) {
+                    console.log("toRadians() function calling error: " + error);
+                }
                 bullets[bullets.length - 1].speedX += bulletSpeed * Math.cos(shootAngle);
                 bullets[bullets.length - 1].speedY += bulletSpeed * Math.sin(shootAngle);
             }
@@ -247,28 +318,12 @@ function updateGameArea() {
         myObstacles[i].update();
     }
 
+    xpCounter.text = "XP: " + xp;
+    xpCounter.x = xpOffset + translateX;
+    xpCounter.y = canvas.height - xpOffset + translateY;
+    xpCounter.update();
+
     redSquare.newPos();
     redSquare.update();
 }
 
-
-// function moveUp() {
-//     redSquare.speedY -= 5;
-// }
-
-// function moveDown() {
-//     redSquare.speedY += 5;
-// }
-
-// function moveLeft() {
-//     redSquare.speedX -= 5;
-// }
-
-// function moveRight() {
-//     redSquare.speedX += 5;
-// }
-
-// function stopMove() {
-//     redSquare.speedX = 0;
-//     redSquare.speedY = 0;
-// }
