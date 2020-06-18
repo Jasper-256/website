@@ -2,6 +2,7 @@ var canvas = document.getElementById("canvas");
 var context = canvas.getContext("2d");
 
 var xpCounter;
+var hpBar;
 var player;
 var enemyShips = [];
 var bullets = [];
@@ -9,30 +10,55 @@ var food = [];
 
 
 // Changeable charicteristics to customize the game:
+
+// Colors:
+var playerColor = "blue";
+var playerBulletColor = playerColor;
+
+var enemyShipColor = "red";
+var enemyBulletColor = enemyShipColor;
+
+var foodColor = "green";
+var hpBarColor = "green";
+
+
+// Visual stuff:
 var mouseDeadZone = 25;
 var xpOffset = 40;
 
+// HP and HP bar:
+var maxHP = 100;
+var hpBarWidth = 60;
+var hpBarHeight = 5;
+var hpBarOffset = 10;
+
+// Player stats:
 var playerWidth = 50;
 var playerHeight = 20;
 var playerSpeed = 3;
 var autoSpinSpeed = 1.5; // 4 secs per rotation
 
-var bulletSpeed = 8;
-var bulletRate = 4; // 15 per sec (every 4 frames)
-var bulletVariationDegrees = 15;
-var maxBulletLifetime = 180; // 3 secs
-
+// Enemy stats:
 var enemyShipNo = 10;
 var enemyShipSpeed = 2;
 var enemyShipLockOnDistance = 700;
 var enemyShipStopDistance = 400;
 var enemyShipBackUpDistance = 100;
 
+// Bullet stats:
+var bulletSpeed = 8;
+var bulletVariationDegrees = 15;
+var bulletLifetime = 180; // 3 secs
+var playerBulletRate = 2; // 30 per sec (every 2 frames)
+var enemyBulletRate = 4; // 15 per sec (every 4 frames)
+
+// Food stats:
 var minFoodSize = 10;
 var maxFoodSize = 20;
 var foodNo = 2000;
 
 var mapSize = 4000;
+
 // End of changeable charicterestics
 
 
@@ -41,7 +67,8 @@ var level = 0;
 
 var currentEnemyShipNo = 0;
 var currentFoodNo = 0;
-// var started = false;
+
+hpBarOffset += (playerWidth / 2) + (hpBarHeight / 2);
 
 var mouseDown = false;
 
@@ -81,7 +108,7 @@ document.addEventListener('keydown', function(e) {
 })
 
 document.addEventListener('keyup', function(e) {
-    keys[e.keyCode] = false;
+    keys[e.keyCode] = false
 })
 
 
@@ -89,8 +116,9 @@ document.addEventListener('keyup', function(e) {
 function startGame() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
-    player = new component(playerWidth, playerHeight, "red", canvas.width / 2, canvas.height / 2);
+    player = new component(playerWidth, playerHeight, playerColor, canvas.width / 2, canvas.height / 2);
     xpCounter = new component("30px", "Arial", "black", 0, 0, "text"); // x and y for this are set in updateGameArea()
+    hpBar = new component(0, hpBarHeight, hpBarColor, 0, 0) // width, x, and y for this are set in updateGameArea();
 }
 
 function clear() {
@@ -110,12 +138,14 @@ function component(width, height, color, x, y, type) {
     this.type = type;
     this.width = width;
     this.height = height;
+    this.color = color;
     this.angle = 0;
     this.speed = 0;
     this.x = x;
     this.y = y;
     this.speedX = 0;
     this.speedY = 0;
+    this.hp = maxHP;
     this.lifetime = 0;
     this.bulletNumber = 0;
     
@@ -123,7 +153,7 @@ function component(width, height, color, x, y, type) {
         ctx = context;
         if (this.type == "text") {
             ctx.font = this.width + " " + this.height;
-            ctx.fillStyle = color;
+            ctx.fillStyle = this.color;
             ctx.fillText(this.text, this.x, this.y);
         } else {
             ctx.save();
@@ -131,7 +161,7 @@ function component(width, height, color, x, y, type) {
             this.y += this.speedY;
             ctx.translate(this.x, this.y);
             ctx.rotate(this.angle);
-            ctx.fillStyle = color;
+            ctx.fillStyle = this.color;
             ctx.fillRect(this.width / -2, this.height / -2, this.width, this.height);
             ctx.restore();
         }
@@ -143,11 +173,13 @@ function component(width, height, color, x, y, type) {
     }
 
     this.newPos = function() {
-        x = -(this.speed * Math.cos(this.angle));
-        y = -(this.speed * Math.sin(this.angle));
-        translateX -= x;
-        translateY -= y;
-        ctx.translate(x, y);
+        // var moveX = -(this.speed * Math.cos(this.angle));
+        // var moveY = -(this.speed * Math.sin(this.angle));
+        var moveX = -this.speedX;
+        var moveY = -this.speedY;
+        translateX -= moveX;
+        translateY -= moveY;
+        ctx.translate(moveX, moveY);
     }
 
     this.crashWith = function(otherobj) {
@@ -210,11 +242,13 @@ function updateGameArea() {
 
     for (f = 0; f < food.length; f += 1) {
         for (b = 0; b < bullets.length; b += 1) {
-            if (bullets[b].crashWith(food[f])) {
-                food.splice(f, 1);
-                bullets.splice(b, 1);
-                currentFoodNo -= 1;
-                xp += 1;
+            if (bullets[b].color == playerBulletColor) {
+                if (bullets[b].crashWith(food[f])) {
+                    food.splice(f, 1);
+                    bullets.splice(b, 1);
+                    currentFoodNo -= 1;
+                    xp += 1;
+                }
             }
         }
     }
@@ -222,9 +256,11 @@ function updateGameArea() {
     for (a = 0; a < bullets.length; a += 1) {
         for (b = 0; b < bullets.length; b += 1) {
             if (a != b) {
-                if (bullets[a].crashWith(bullets[b])) {
-                    bullets.splice(a, 1);
-                    bullets.splice(b, 1);
+                if (bullets[a].color != bullets[b].color) {
+                    if (bullets[a].crashWith(bullets[b])) {
+                        bullets.splice(a, 1);
+                        bullets.splice(b, 1);
+                    }
                 }
             }
         }
@@ -259,11 +295,11 @@ function updateGameArea() {
             player.angle += toRadians(autoSpinSpeed);
         }
 
-        if (mouseDistanceFromPlayer >= mouseDeadZone) {
-            player.speed = playerSpeed;
-        } else {
-            player.speed = 0;
-        }
+        // if (mouseDistanceFromPlayer >= mouseDeadZone) {
+        //     player.speed = playerSpeed;
+        // } else {
+        //     player.speed = 0;
+        // }
     }
 
 
@@ -271,6 +307,85 @@ function updateGameArea() {
     var centerY = translateY + (canvas.height / 2);
 
 
+    function rightPressed() {
+        if (keys[39] || keys[68]) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    function leftPressed() {
+        if (keys[37] || keys[65]) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    function downPressed() {
+        if (keys[40] || keys[83]) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    function upPressed() {
+        if (keys[38] || keys[87]) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    function resetSpeed() {
+        player.speedX = 0;
+        player.speedY = 0;
+    }
+
+    resetSpeed();
+
+    var diagonalPlayerSpeed = playerSpeed / Math.sqrt(2);
+
+    if (keys) {
+        if (rightPressed()) {
+            player.speedX = playerSpeed;
+        }
+        if (leftPressed()) {
+            player.speedX = -playerSpeed;
+        }
+        if (downPressed()) {
+            player.speedY = playerSpeed;
+        }
+        if (upPressed()) {
+            player.speedY = -playerSpeed;
+        }
+
+        if (rightPressed() && downPressed()) {
+            player.speedX = diagonalPlayerSpeed;
+            player.speedY = diagonalPlayerSpeed;
+        }
+        if (rightPressed() && upPressed()) {
+            player.speedX = diagonalPlayerSpeed;
+            player.speedY = -diagonalPlayerSpeed;
+        }
+        if (leftPressed() && downPressed()) {
+            player.speedX = -diagonalPlayerSpeed;
+            player.speedY = diagonalPlayerSpeed;
+        }
+        if (leftPressed() && upPressed()) {
+            player.speedX = -diagonalPlayerSpeed;
+            player.speedY = -diagonalPlayerSpeed;
+        }
+
+        if (rightPressed() && leftPressed()) {
+            player.speedX = 0;
+        }
+        if (downPressed() && upPressed()) {
+            player.speedY = 0;
+        }
+    }
 
     if (keys && keys[69] && !autofireKeyDown) {
         autofire = !autofire;
@@ -282,8 +397,8 @@ function updateGameArea() {
     }
 
     if ((keys && keys[32]) || mouseDown || autofire) { // space pressed
-        if (player.bulletNumber % bulletRate == 0) {
-            bullets.push(new component(5, 5, "blue", centerX, centerY));
+        if (player.bulletNumber % playerBulletRate == 0) {
+            bullets.push(new component(5, 5, playerBulletColor, centerX, centerY));
 
             var shootAngle = player.angle;
             shootAngle += toRadians((Math.random() * bulletVariationDegrees) - (bulletVariationDegrees / 2));
@@ -295,15 +410,6 @@ function updateGameArea() {
     }
 
 
-    for (i = 0; i < bullets.length; i += 1) {
-        // bullets[i].x += 8;
-        bullets[i].lifetime += 1;
-        if (bullets[i].lifetime > maxBulletLifetime) {
-            bullets.splice(i, 1);
-        } else {
-            bullets[i].update();
-        }
-    }
 
     function getRandomX() {
         var mapXMin = (canvas.width / 2) - (mapSize / 2);
@@ -321,21 +427,32 @@ function updateGameArea() {
     while (currentFoodNo < foodNo) {
         var randomSize = Math.floor(Math.random() * (maxFoodSize - minFoodSize)) + minFoodSize;
 
-        food.push(new component(randomSize, randomSize, "green", getRandomX(), getRandomY()));
+        food.push(new component(randomSize, randomSize, foodColor, getRandomX(), getRandomY()));
 
         currentFoodNo += 1;
     }
 
     while (currentEnemyShipNo < enemyShipNo) {
-        enemyShips.push(new component(playerWidth, playerHeight, "purple", getRandomX(), getRandomY()));
+        enemyShips.push(new component(playerWidth, playerHeight, enemyShipColor, getRandomX(), getRandomY()));
 
         currentEnemyShipNo += 1;
     }
 
 
+
+
+    // .update() function calling:
     for (i = 0; i < food.length; i += 1) {
-        // myObstacles[i].x += -1;
         food[i].update();
+    }
+
+    for (i = 0; i < bullets.length; i += 1) {
+        bullets[i].lifetime += 1;
+        if (bullets[i].lifetime > bulletLifetime) {
+            bullets.splice(i, 1);
+        } else {
+            bullets[i].update();
+        }
     }
 
     for (i = 0; i < enemyShips.length; i += 1) {
@@ -352,8 +469,8 @@ function updateGameArea() {
             enemyShips[i].speed = 0;
         }
 
-        if (distanceToPlayer < enemyShipLockOnDistance && enemyShips[i].bulletNumber % bulletRate == 0) {
-            bullets.push(new component(5, 5, "blue", enemyShips[i].x, enemyShips[i].y));
+        if (distanceToPlayer < enemyShipLockOnDistance && enemyShips[i].bulletNumber % enemyBulletRate == 0) { 
+            bullets.push(new component(5, 5, enemyBulletColor, enemyShips[i].x, enemyShips[i].y));
 
             var shootAngle = enemyShips[i].angle;
             shootAngle += toRadians((Math.random() * bulletVariationDegrees) - (bulletVariationDegrees / 2));
@@ -367,13 +484,21 @@ function updateGameArea() {
         enemyShips[i].update();
     }
 
-    xpCounter.text = "XP: " + xp;
-    xpCounter.x = xpOffset + translateX;
-    xpCounter.y = canvas.height - xpOffset + translateY;
-    xpCounter.update();
 
     player.moveBasedOnSpeed();
     player.newPos();
     player.update();
+
+
+
+    hpBar.width = (player.hp / maxHP) * hpBarWidth;
+    hpBar.x = (canvas.width / 2) + translateX;
+    hpBar.y = (canvas.height / 2) + translateY - hpBarOffset;
+    hpBar.update();
+
+    xpCounter.text = "XP: " + xp;
+    xpCounter.x = xpOffset + translateX;
+    xpCounter.y = canvas.height - xpOffset + translateY;
+    xpCounter.update();
 }
 
