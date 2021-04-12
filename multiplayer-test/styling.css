@@ -1,10 +1,11 @@
 body {
     margin: 0;
     padding: 0;
+    background-color: #202020;
 }
 
 canvas {
     position: absolute;
-    background-color: #f0f0f0;
+    background-color: #202020;
     /* border: 1px solid #e0e0e0; */
 }

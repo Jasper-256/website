@@ -55,5 +55,5 @@ function upPressed() {
 
 function resetSpeed() {
     player.speedX = 0;
-    player.speedY = 0;
+    // player.speedY = 0;
 }

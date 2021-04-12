@@ -2,8 +2,15 @@ var canvas = document.getElementById("canvas");
 var context = canvas.getContext("2d");
 
 // Changable vars:
-var playerSpeed = 4;
-var playerYStart = 50;
+var playerSpeed = 3;
+var playerJumpSpeed = 4;
+var gravityStrength = 0.1;
+
+var playerSize = 20;
+var playerYStart = playerSize / 2;
+
+var playerColor = "green";
+
 
 // Grid lines:
 var gridLineSpacing = 25;
@@ -19,6 +26,8 @@ var gridLineColor = "grey";
 
 // Leave these alone:
 var diagonalPlayerSpeed = playerSpeed / Math.sqrt(2);
+
+var mapBottom = playerYStart - (playerSize / 2);
 
 var keys = [];
 

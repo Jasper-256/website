@@ -2,7 +2,7 @@ function startGame() {
     setCanvasDims();
     setCenters();
 
-    player = new component(20, 20, centerX, centerY, "red", "player");
+    player = new component(20, 20, centerX, centerY, playerColor, "player");
     plant = new component(5, 5, 60, 60, "green", "plant");
 
     for (i = 0; i < numGridXLines; i++) {
@@ -75,38 +75,52 @@ function updateGameArea() {
         if (leftPressed()) {
             player.speedX = -playerSpeed;
         }
-        if (downPressed()) {
-            player.speedY = playerSpeed;
-        }
+        // if (downPressed()) {
+        //     player.speedY = playerSpeed;
+        // }
         if (upPressed()) {
-            player.speedY = -playerSpeed;
+            if (translateY >= mapBottom) {
+                player.speedY = -playerJumpSpeed;
+            }
         }
 
-        if (rightPressed() && downPressed()) {
-            player.speedX = diagonalPlayerSpeed;
-            player.speedY = diagonalPlayerSpeed;
-        }
-        if (rightPressed() && upPressed()) {
-            player.speedX = diagonalPlayerSpeed;
-            player.speedY = -diagonalPlayerSpeed;
-        }
-        if (leftPressed() && downPressed()) {
-            player.speedX = -diagonalPlayerSpeed;
-            player.speedY = diagonalPlayerSpeed;
-        }
-        if (leftPressed() && upPressed()) {
-            player.speedX = -diagonalPlayerSpeed;
-            player.speedY = -diagonalPlayerSpeed;
-        }
+        // if (rightPressed() && downPressed()) {
+        //     player.speedX = diagonalPlayerSpeed;
+        //     player.speedY = diagonalPlayerSpeed;
+        // }
+        // if (rightPressed() && upPressed()) {
+        //     player.speedX = diagonalPlayerSpeed;
+        //     player.speedY = -diagonalPlayerSpeed;
+        // }
+        // if (leftPressed() && downPressed()) {
+        //     player.speedX = -diagonalPlayerSpeed;
+        //     player.speedY = diagonalPlayerSpeed;
+        // }
+        // if (leftPressed() && upPressed()) {
+        //     player.speedX = -diagonalPlayerSpeed;
+        //     player.speedY = -diagonalPlayerSpeed;
+        // }
 
         if (rightPressed() && leftPressed()) {
             player.speedX = 0;
         }
-        if (downPressed() && upPressed()) {
-            player.speedY = 0;
+        // if (downPressed() && upPressed()) {
+        //     player.speedY = 0;
+        // }
+    }
+
+    player.speedY = player.speedY + gravityStrength;
+
+    // Enforcing bottom
+    if ((translateY + player.speedY) > mapBottom) {
+        if (player.speedY > 0) {
+            player.speedY = mapBottom - translateY;
         }
     }
 
+
+
+    // Updates
     for (i = 0; i < gridX.length; i++) {
         gridX[i].update();
     }
