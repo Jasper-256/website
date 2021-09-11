@@ -1,0 +1,30 @@
+body {
+    text-align: center;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+/* h1 {
+    color: darkgrey;
+} */
+
+a {
+    color: blue;
+    text-decoration: none;
+}
+
+/* hr {
+    border: none;
+    height: 2px;
+    background-color: rgb(208, 208, 208);
+} */
+
+@media (prefers-color-scheme: dark) {
+    body {
+        background-color: #1a1a1a;
+        color: darkgrey;
+    }
+    
+    /* hr {
+        background-color: rgb(56, 56, 56);
+    } */
+}
