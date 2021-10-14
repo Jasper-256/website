@@ -3,9 +3,9 @@ body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
-/* h1 {
+h1 {
     color: green;
-} */
+}
 
 a {
     color: blue;
@@ -19,12 +19,13 @@ hr {
 }
 
 @media (prefers-color-scheme: dark) {
-    /* body {
-        background-color: #1A1A1A;
+    body {
+        background-color: #1a1a1a;
         color: rgb(180, 180, 180);
-    } */
+    }
     
     hr {
         background-color: rgb(56, 56, 56);
     }
 }
+
