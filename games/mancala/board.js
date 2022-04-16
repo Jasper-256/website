@@ -64,6 +64,7 @@ function countTotalMarblesOnSide(boardList, side) {
 class Board {
     constructor() {
         this.board = [4, 4, 4, 4, 4, 4, 0, 4, 4, 4, 4, 4, 4, 0]
+        this.gameOver = false
     }
 
     printBoard() {
@@ -147,6 +148,7 @@ class Board {
                     i += 1
                 }
                 console.log("game over", totalMarblesOnOtherSide)
+                this.gameOver = true
             }
             c += 1
         }
