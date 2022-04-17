@@ -1,13 +1,13 @@
 var mainBoard = new Board()
 var playerSidePointerable = true
 var enemySidePointerable = true
-var playerTurn = false
+// var playerTurn = false
 let prefixIdOfSpot = "2"
 let prefixIdOfMancala = "end"
 mainBoard.printBoard()
 
 function updateState() {
-    if(playerTurn) {
+    if(mainBoard.playerTurn) {
         playerSidePointerable = true
         enemySidePointerable = false
     } else {
@@ -99,19 +99,23 @@ function updateBoard() {
         }
         i += 1
     }
-    // playerTurn = !playerTurn
 }
 
 function checkGameOver() {
     if(mainBoard.gameOver == true) {
         playerSidePointerable = false
         enemySidePointerable = false
-        document.getElementById("state").innerHTML = "game over"
+        if(mainBoard.winner == "draw") {
+            document.getElementById("state").innerHTML = "game over - " + mainBoard.winner
+        } else if(mainBoard.winner == "player" || mainBoard.winner == "enemy") {
+            document.getElementById("state").innerHTML = "game over - " + mainBoard.winner + " wins"
+        } else {
+            document.getElementById("state").innerHTML = "game over...? something bad happened"
+        }
     }
 }
 
 function update() {
-    playerTurn = !playerTurn
     updateState()
     updateBoard()
     checkGameOver()
@@ -122,7 +126,6 @@ function update() {
 function userClick(box) {
     if(((playerSidePointerable && isOnPlayerSide(box)) || (enemySidePointerable && !isOnPlayerSide(box))) && (mainBoard.board[box] != 0)) {
         mainBoard.movePiece(box)
-        console.log("")
         mainBoard.printBoard()
         update()
     }

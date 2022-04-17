@@ -61,13 +61,32 @@ function countTotalMarblesOnSide(boardList, side) {
     return totalMarbles
 }
 
+function determineWinner(b) {
+    // b is the board, player and enemy marbels are the amount of marbels in each mancala
+    let playerMarbels = b[getMancalaIdFromPlayerSide(true)]
+    let enemyMarbels = b[getMancalaIdFromPlayerSide(false)]
+    if(playerMarbels == enemyMarbels) {
+        console.log("draw")
+        return "draw"
+    } else if(playerMarbels > enemyMarbels) {
+        console.log("player wins")
+        return "player"
+    } else if(playerMarbels < enemyMarbels) {
+        console.log("enemy wins")
+        return "enemy"
+    }
+}
+
 class Board {
     constructor() {
         this.board = [4, 4, 4, 4, 4, 4, 0, 4, 4, 4, 4, 4, 4, 0]
+        this.playerTurn = true
         this.gameOver = false
+        this.winner = "n/a"
     }
 
     printBoard() {
+        console.log("")
         console.log(this.board[12], this.board[11], this.board[10], this.board[9], this.board[8], this.board[7])
         console.log(this.board[13], this.board[6])
         console.log(this.board[0], this.board[1], this.board[2], this.board[3], this.board[4], this.board[5])
@@ -149,8 +168,16 @@ class Board {
                 }
                 console.log("game over", totalMarblesOnOtherSide)
                 this.gameOver = true
+                this.winner = determineWinner(this.board)
+                console.log(this.winner)
             }
             c += 1
+        }
+        // Check if the last marbel is in a mancala and if it is, let the player play again
+        if(isInMancala(spotToMove)) {
+            console.log("is in mancala")
+        } else {
+            this.playerTurn = !this.playerTurn
         }
     }
 
