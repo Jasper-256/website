@@ -11,16 +11,5 @@ a {
 hr {
     border: none;
     height: 2px;
-    background-color: rgb(208, 208, 208);
-}
-
-@media (prefers-color-scheme: dark) {
-    /* body {
-        background-color: #1A1A1A;
-        color: rgb(180, 180, 180);
-    } */
-    
-    hr {
-        background-color: rgb(56, 56, 56);
-    }
+    background-color: #D0D0D0;
 }

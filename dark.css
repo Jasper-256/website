@@ -1,6 +1,10 @@
 @media (prefers-color-scheme: dark) {
     body {
         background-color: #1A1A1A;
-        color: rgb(180, 180, 180);
+        color: #B4B4B4;
+    }
+
+    hr {
+        background-color: #383838;
     }
 }
