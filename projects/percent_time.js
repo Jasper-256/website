@@ -13,8 +13,8 @@ function updateTime() {
     var millisecondsday = milliseconds / 86400000;
 
     var decimal = hoursday + minutesday + secondsday + millisecondsday;
-    var rounded = Math.round(decimal * 100000) / 1000;
-    var string = rounded.toString() + '%';
+    var rounded = Math.round(decimal * 10000000) / 100000;
+    var string = rounded.toString().padEnd(8, 0) + "%";
     document.getElementById("time").innerHTML = string;
 }
 
