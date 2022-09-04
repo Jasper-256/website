@@ -1,21 +1,20 @@
+Date.prototype.getDOY = function() {
+    var onejan = new Date(this.getFullYear(),0,1);
+    return Math.ceil((this - onejan) / 86400000);
+}
+
+
 function updateTime() {
-    // var date = new Date();
-    // var hours = date.getHours();
-    // var hoursday = hours / 24;
+    var today = new Date();
 
-    // var minutes = date.getMinutes();
-    // var minutesday = minutes / 1440;
-
-    // var seconds = date.getSeconds();
-    // var secondsday = seconds / 86400;
-
-    // var milliseconds = date.getMilliseconds();
-    // var millisecondsday = milliseconds / 86400000;
-
-    // var decimal = hoursday + minutesday + secondsday + millisecondsday;
-    // var rounded = Math.round(decimal * 10000000) / 100000;
-    // var string = rounded.toString().padEnd(8, 0) + "%";
-    // document.getElementById("time").innerHTML = "string";
+    var year = today.getFullYear().toString();
+    var daynum = (today.getDOY() - 1).toString().padStart(3, 0);
+    var hours = today.getHours().toString().padStart(2, 0);
+    var minutes = today.getMinutes().toString().padStart(2, 0);
+    var seconds = today.getSeconds().toString().padStart(2, 0);
+    var miliseconds = today.getMilliseconds().toString().padStart(3, 0);
+    
+    document.getElementById("time").innerHTML = year + "-" + daynum + " " + hours + ":" + minutes + ":" + seconds + "." + miliseconds;
 }
 
 window.onload = updateTime;
