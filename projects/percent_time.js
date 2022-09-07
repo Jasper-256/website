@@ -12,10 +12,11 @@ function updateTime() {
     var milliseconds = date.getMilliseconds();
     var millisecondsday = milliseconds / 86400000;
 
-    var decimal = hoursday + minutesday + secondsday + millisecondsday;
-    var rounded = Math.round(decimal * 10000000) / 100000;
-    var string = rounded.toString().padEnd(8, 0) + "%";
-    document.getElementById("time").innerHTML = string;
+    var decimal_percent_time = hoursday + minutesday + secondsday + millisecondsday;
+    var rounded_percent_time = Math.round(decimal_percent_time * 10000000) / 100000;
+    var string_percent_time = rounded_percent_time.toString().padEnd(8, 0) + "%";
+    var string_percent_time_with_start_zeros = string_percent_time.padStart(9, 0)
+    document.getElementById("time").innerHTML = string_percent_time_with_start_zeros;
 }
 
 window.onload = updateTime;

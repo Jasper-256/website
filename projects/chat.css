@@ -4,6 +4,7 @@ body {
 }
 
 button {
+    color: black;
     background-color: white;
     border: 1px solid #D0D0D0;
     border-radius: 4px;
@@ -16,8 +17,8 @@ button {
     }
 
     button {
-        background-color: #202020;
         color: #B4B4B4;
+        background-color: #202020;
         border: 1px solid #383838;
     }
 }
