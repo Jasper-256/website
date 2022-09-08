@@ -4,7 +4,7 @@ body {
 }
 
 a {
-    color: #0000EE;
+    color: blue;
     text-decoration: none;
 }
 
@@ -16,6 +16,6 @@ hr {
 
 @media (prefers-color-scheme: dark) {
     a {
-        color: #0000CC;
+        color: #3B60F0;
     }
 }
