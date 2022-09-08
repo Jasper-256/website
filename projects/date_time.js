@@ -1,12 +1,11 @@
 Date.prototype.getDOY = function() {
-    var onejan = new Date(this.getFullYear(),0,1);
+    var onejan = new Date(this.getFullYear(), 0, 1);
     return Math.ceil((this - onejan) / 86400000);
 }
 
-
 function updateTime() {
     var today = new Date();
-
+    
     var year = today.getFullYear().toString();
     var daynum = (today.getDOY() - 1).toString().padStart(3, 0);
     var hours = today.getHours().toString().padStart(2, 0);
