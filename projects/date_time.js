@@ -13,7 +13,7 @@ function updateTime() {
     var seconds = today.getSeconds().toString().padStart(2, 0);
     var miliseconds = today.getMilliseconds().toString().padStart(3, 0);
     
-    document.getElementById("time").innerHTML = year + "-" + daynum + " " + hours + ":" + minutes + ":" + seconds + "." + miliseconds;
+    document.getElementById("time").innerHTML = year + " " + daynum + " " + hours + ":" + minutes + ":" + seconds + "." + miliseconds;
 }
 
 window.onload = updateTime;
