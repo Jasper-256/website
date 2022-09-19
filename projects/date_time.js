@@ -1,13 +1,19 @@
 Date.prototype.getDOY = function() {
+    var today = new Date();
     var onejan = new Date(this.getFullYear(), 0, 1);
-    return Math.ceil((this - onejan) / 86400000);
+    var todayOffsetMins = -(today.getTimezoneOffset());
+    var onejanOffsetMins = -(onejan.getTimezoneOffset());
+    var onejanTimezoneOffsetMins = onejanOffsetMins - todayOffsetMins;
+
+    var onejanFinal = new Date(this.getFullYear(), 0, 1, 0, onejanTimezoneOffsetMins);
+    return (Math.ceil((this - onejanFinal) / 86400000)) - 1;
 }
 
 function updateTime() {
     var today = new Date();
     
     var year = today.getFullYear().toString();
-    var daynum = (today.getDOY() - 1).toString().padStart(3, 0);
+    var daynum = today.getDOY().toString().padStart(3, 0);
     var hours = today.getHours().toString().padStart(2, 0);
     var minutes = today.getMinutes().toString().padStart(2, 0);
     var seconds = today.getSeconds().toString().padStart(2, 0);
