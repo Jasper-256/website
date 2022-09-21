@@ -34,8 +34,12 @@ function updateTime() {
     var minutes = today.getMinutes().toString().padStart(2, 0);
     var seconds = today.getSeconds().toString().padStart(2, 0);
     var miliseconds = today.getMilliseconds().toString().padStart(3, 0);
-    
-    document.getElementById("time").innerHTML = dozenalHours + ":" + minutes + ":" + seconds + "." + miliseconds;
+
+    if(document.getElementById("type").innerHTML == "big") {
+        document.getElementById("time").innerHTML = dozenalHours + ":" + minutes;
+    } else {
+        document.getElementById("time").innerHTML = dozenalHours + ":" + minutes + ":" + seconds + "." + miliseconds;
+    }
 }
 
 window.onload = updateTime;
