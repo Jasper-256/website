@@ -12,8 +12,8 @@ function updateTime() {
     var milliseconds = date.getMilliseconds();
     var millisecondsday = milliseconds / 86400000;
 
-    var decimal_percent_time = hoursday + minutesday + secondsday + millisecondsday;
-    var rounded_percent_time = Math.round(decimal_percent_time * 10000000) / 100000;
+    var decimal_time = hoursday + minutesday + secondsday + millisecondsday;
+    var rounded_percent_time = Math.round(decimal_time * 10000000) / 100000;
     
     var end_cut_percent_time_reg = rounded_percent_time.toFixed(5);
     var string_percent_time_reg = end_cut_percent_time_reg.toString().padStart(8, 0) + "%";

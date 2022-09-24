@@ -13,13 +13,21 @@ function updateTime() {
     var today = new Date();
     
     var year = today.getFullYear().toString();
+    var month = (today.getMonth() + 1).toString().padStart(2, 0);
+    var day = today.getDate().toString().padStart(2, 0);
     var daynum = today.getDOY().toString().padStart(3, 0);
     var hours = today.getHours().toString().padStart(2, 0);
     var minutes = today.getMinutes().toString().padStart(2, 0);
     var seconds = today.getSeconds().toString().padStart(2, 0);
     var miliseconds = today.getMilliseconds().toString().padStart(3, 0);
+
+    var timezoneOffset = -today.getTimezoneOffset();
+    var offsetDirecton = ((timezoneOffset >= 0) ? "+" : "-");
+    timezoneOffset = Math.abs(timezoneOffset);
+    var offsetHours = (Math.floor(timezoneOffset / 60)).toString().padStart(2, 0);
+    var offsetMinutes = (Math.floor(timezoneOffset % 60)).toString().padStart(2, 0);
     
-    document.getElementById("time").innerHTML = year + "/" + daynum + "/" + hours + ":" + minutes + ":" + seconds + "." + miliseconds;
+    document.getElementById("time").innerHTML = year + "-" + daynum + "  " + hours + ":" + minutes + ":" + seconds + "." + miliseconds + offsetDirecton + offsetHours + ":" + offsetMinutes;
 }
 
 window.onload = updateTime;
