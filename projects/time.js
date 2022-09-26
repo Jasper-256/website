@@ -75,22 +75,28 @@ function updateTime() {
     var string_percent_time_reg = end_cut_percent_time_reg.toString().padStart(8, 0) + "%";
 
     // Decimal Unix
-    var decimalUnix = decimal_time.toFixed(7);
-    var decimalUnixNoZero = decimalUnix.slice(1);
+    var decimalUnixRaw = unix / 86400000;
+    var decimalUnixString = decimalUnixRaw.toFixed(7);
 
     // Decimal
-    var decHours = decimalUnix.slice(2, 3);
-    var decMinutes = decimalUnix.slice(3, 5);
-    var decSeconds = decimalUnix.slice(5, 7);
-    var decMS = decimalUnix.slice(7, 9);
+    var decimal_time_cut = decimal_time.toFixed(8);
+    var decHours = decimal_time_cut.slice(2, 3);
+    var decMinutes = decimal_time_cut.slice(3, 5);
+    var decSeconds = decimal_time_cut.slice(5, 7);
+    var decMS = decimal_time_cut.slice(7, 9);
+
+    // Milliday
+    var millidayRaw = decimal_time * 1000;
+    var millidayString = millidayRaw.toFixed(3);
 
     document.getElementById("offset").innerHTML = offsetDirecton + offsetHours + ":" + offsetMinutes;
     document.getElementById("time").innerHTML = hours + ":" + minutes + ":" + seconds + "." + milliseconds;
     document.getElementById("dozenal").innerHTML = dozenalHours + ":" + minutes + ":" + seconds + "." + milliseconds;
     document.getElementById("unix").innerHTML = unixFormatted;
-    document.getElementById("percent").innerHTML = string_percent_time_reg;
     document.getElementById("decimal").innerHTML = decHours + ":" + decMinutes + ":" + decSeconds + "." + decMS;
-    document.getElementById("decimalunix").innerHTML = year + "-" + daynum + decimalUnixNoZero;
+    document.getElementById("percent").innerHTML = string_percent_time_reg;
+    document.getElementById("milliday").innerHTML = millidayString;
+    document.getElementById("decimalunix").innerHTML = decimalUnixString;
     document.getElementById("ordinal").innerHTML = year + "-" + daynum;
     document.getElementById("date").innerHTML = year + "-" + month + "-" + day;
 }
