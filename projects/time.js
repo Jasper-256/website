@@ -87,7 +87,7 @@ function updateTime() {
 
     // Milliday
     var millidayRaw = decimal_time * 1000;
-    var millidayString = millidayRaw.toFixed(3);
+    var millidayString = millidayRaw.toFixed(3).padStart(7, 0);
 
     document.getElementById("offset").innerHTML = offsetDirecton + offsetHours + ":" + offsetMinutes;
     document.getElementById("time").innerHTML = hours + ":" + minutes + ":" + seconds + "." + milliseconds;
