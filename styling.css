@@ -19,3 +19,11 @@ hr {
         color: #3B60F0;
     }
 }
+
+table {
+    width: 100%;
+}
+
+td {
+    width: 50%;
+}
