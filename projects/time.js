@@ -11,6 +11,11 @@ Date.prototype.getDOY = function() {
     return (Math.ceil((this - onejanFinal) / 86400000)) - 1;
 }
 
+Date.prototype.getUTCDOY = function() {
+    var onejan = new Date(this.getUTCFullYear(), 0, 1);
+    return (Math.ceil((this - onejan) / 86400000)) - 1;
+}
+
 Date.prototype.getDozenalHours = function() {
     var hours = this.getHours();
     if(utc) {
@@ -58,7 +63,7 @@ function updateTime() {
         year = today.getUTCFullYear().toString();
         month = (today.getUTCMonth() + 1).toString().padStart(2, 0);
         day = today.getUTCDate().toString().padStart(2, 0);
-        // daynum = today.getDOY().toString().padStart(3, 0);
+        daynum = today.getUTCDOY().toString().padStart(3, 0);
         hours = today.getUTCHours().toString().padStart(2, 0);
         minutes = today.getUTCMinutes().toString().padStart(2, 0);
         seconds = today.getUTCSeconds().toString().padStart(2, 0);
