@@ -12,8 +12,8 @@ Date.prototype.getDOY = function() {
 }
 
 Date.prototype.getUTCDOY = function() {
-    var today = new Date();
-    var timezoneOffset = today.getTimezoneOffset();
+    var yearstart = new Date(this.getFullYear(), 0, 1);
+    var timezoneOffset = yearstart.getTimezoneOffset();
     var onejan = new Date(this.getUTCFullYear(), 0, 1, -(timezoneOffset / 60));
     return (Math.ceil((this.getTime() - onejan.getTime()) / 86400000)) - 1;
 }
