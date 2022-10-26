@@ -12,8 +12,10 @@ Date.prototype.getDOY = function() {
 }
 
 Date.prototype.getUTCDOY = function() {
-    var onejan = new Date(this.getUTCFullYear(), 0, 1);
-    return (Math.ceil((this - onejan) / 86400000)) - 1;
+    var today = new Date();
+    var timezoneOffset = today.getTimezoneOffset();
+    var onejan = new Date(this.getUTCFullYear(), 0, 1, -(timezoneOffset / 60));
+    return (Math.ceil((this.getTime() - onejan.getTime()) / 86400000)) - 1;
 }
 
 Date.prototype.getDozenalHours = function() {
