@@ -1,15 +1,29 @@
+function pointer(sq, isPointer) {
+    if(isPointer) {
+        document.getElementById(sq + "a").className = "pointer";
+        document.getElementById(sq + "b").className = "pointer";
+        document.getElementById(sq + "c").className = "pointer";
+    } else {
+        document.getElementById(sq + "a").className = "";
+        document.getElementById(sq + "b").className = "";
+        document.getElementById(sq + "c").className = "";
+    }
+}
+
+
 function x(sq) {
     document.getElementById(sq + "a").innerHTML = "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp";
     document.getElementById(sq + "b").innerHTML = "&nbsp&nbsp\\/&nbsp&nbsp";
     document.getElementById(sq + "c").innerHTML = "&nbsp&nbsp/\\&nbsp&nbsp";
+    pointer(sq, false);
 }
-
 
 
 function o(sq) {
     document.getElementById(sq + "a").innerHTML = "&nbsp&nbsp__&nbsp&nbsp";
     document.getElementById(sq + "b").innerHTML = "&nbsp|&nbsp&nbsp|&nbsp";
     document.getElementById(sq + "c").innerHTML = "&nbsp|__|&nbsp";
+    pointer(sq, false);
 }
 
 
@@ -17,6 +31,7 @@ function r(sq) {
     document.getElementById(sq + "a").innerHTML = "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp";
     document.getElementById(sq + "b").innerHTML = "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp";
     document.getElementById(sq + "c").innerHTML = "&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp";
+    pointer(sq, true);
 }
 
 
@@ -36,6 +51,7 @@ function q(sq) {
 
 
 
+
 let youFirst = true;
 let gameOver = false;
 
@@ -45,7 +61,7 @@ function c(sq) {
 
         x(sq);
 
-        document.getElementById("winloss").innerHTML = "&nbsp";
+        document.getElementById("winloss").hidden = true;
 
         check();
 
@@ -414,15 +430,20 @@ function clr() {
     r(7);
     r(8);
     r(9);
-    gameOver = false;
+    // if(gameOver) {
+    //     youFirst = !youFirst;
+    // }
     youFirst = !youFirst;
-    if (youFirst) {
+    gameOver = false;
+    document.getElementById("winloss").hidden = false;
+    if(youFirst) {
         document.getElementById("winloss").innerHTML = "You Go First";
     } else {
         document.getElementById("winloss").innerHTML = "Computer Goes First";
         ai();
     }
     check();
+    document.getElementById("clear").hidden = true;
 }
 
 
@@ -435,6 +456,7 @@ function check() {
 }
 
 function checkClear() {
+    document.getElementById("clear").hidden = false;
     if(gameOver == true) {
         document.getElementById("clear").innerHTML = "Play Again";
     } else {
@@ -444,6 +466,7 @@ function checkClear() {
 
 function checkForDraws() {
     if (q(1) != "r" && q(2) != "r" && q(3) != "r" && q(4) != "r" && q(5) != "r" && q(6) != "r" && q(7) != "r" && q(8) != "r" && q(9) != "r") {
+        document.getElementById("winloss").hidden = false;
         document.getElementById("winloss").innerHTML = "It's a Draw";
         gameOver = true;
     }
@@ -517,12 +540,28 @@ function checkForOWins() {
     }
 }
 
+function clearPointers() {
+    pointer(1, false);
+    pointer(2, false);
+    pointer(3, false);
+    pointer(4, false);
+    pointer(5, false);
+    pointer(6, false);
+    pointer(7, false);
+    pointer(8, false);
+    pointer(9, false);
+}
+
 function xWins() {
     gameOver = true;
+    document.getElementById("winloss").hidden = false;
     document.getElementById("winloss").innerHTML = "Ummm... You just won. Computer is extremely confused.";
+    clearPointers();
 }
 
 function oWins() {
     gameOver = true;
+    document.getElementById("winloss").hidden = false;
     document.getElementById("winloss").innerHTML = "The Computer Wins";
+    clearPointers();
 }

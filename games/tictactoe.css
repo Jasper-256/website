@@ -2,3 +2,7 @@ body {
     font-family: Menlo, monospace;
     text-align: center;
 }
+
+.pointer {
+    cursor: pointer;
+}
