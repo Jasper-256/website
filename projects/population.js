@@ -16,7 +16,9 @@ function updatePop() {
     var currentPopRounded = Math.round(currentPopLinear);
     var currentPopFormatted = currentPopRounded.toLocaleString();
 
-    if(window.location.pathname == "/projects/population_raw.html") {
+    var fileName = window.location.pathname.split("/").pop();
+
+    if(fileName == "population_raw.html") {
         document.getElementById("population").innerHTML = currentPopRounded;
     } else {
         document.getElementById("population").innerHTML = currentPopFormatted;
