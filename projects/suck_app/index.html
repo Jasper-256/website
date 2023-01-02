@@ -10,28 +10,38 @@
         <link rel="icon" type="image/png" href="../../favicon-16x16.png" sizes="16x16"/>
 
         <meta name="apple-mobile-web-app-capable" content="yes">
-        <meta name="apple-mobile-web-app-status-bar-style" content="white">
+        <meta name="apple-mobile-web-app-status-bar-style" content="default">
         <meta name="apple-mobile-web-app-title" content="SuckApp">
         <link rel="apple-touch-icon" href="icon.png" sizes="512x512">
         <style>
+            h1, body {
+                margin: 0;
+                padding: 0;
+            }
+
             .header {
                 position: sticky;
                 top: 0;
                 z-index: 10;
                 padding-top: 20px;
                 padding-bottom: 20px;
-                background: #EEEEEE;
-            }
-
-            h1, body {
-                margin: 0;
-                padding: 0;
+                background: whitesmoke;
             }
 
             .cell {
                 background-color: #EEEEEE;
                 border: 1px solid #EEEEEE;
                 border-radius: 10px;
+            }
+
+            .oval {
+                background: red;
+                width: 30px;
+                /* height: 40px; */
+                border-radius: 3px;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
             }
 
             table {
@@ -44,7 +54,7 @@
 
             @media (prefers-color-scheme: dark) {
                 .header {
-                    background: #222222;
+                    background: #242424;
                 }
 
                 .cell {
@@ -85,7 +95,7 @@
                 <td>
                     <div class="cell">
                         <p>$429.99</p>
-                        <a href="https://www.amazon.com/Roborock-Q5-Upgraded-Navigation-Multi-Level/dp/B09N3JKFFY/">
+                        <a href="https://www.amazon.com/Roborock-Q5-Upgraded-Navigation-Multi-Level/dp/B09N3JKFFY">
                             <img src="vacuum-3.png">
                         </a>
                         <p>this vacuum automatically sucks</p>
@@ -93,9 +103,11 @@
                 </td>
                 <td>
                     <div class="cell">
-                        <p style="background-color: red;">Ad</p>
-                        <a href="">
-                            <img src="">
+                        <p>
+                            <div class="oval">Ad</div>
+                        </p>
+                        <a href="https://www.amazon.com/Plow-Hearth-Heavy-Duty-Heat-Resistant-Fireplace/dp/B01N7IZ4EK">
+                            <img style="border-radius: 7px;" src="vacuum-4.png">
                         </a>
                         <p>hot vacuums in your area looking for suck</p>
                     </div>
