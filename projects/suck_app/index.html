@@ -13,6 +13,12 @@
         <meta name="theme-color" content="#FFFFFF">
         <meta name="apple-mobile-web-app-title" content="SuckApp">
         <link rel="apple-touch-icon" href="icon.png" sizes="512x512">
+        <script>
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                document.querySelector('meta[name="apple-mobile-web-app-status-bar-style"]').setAttribute("content", "black-translucent");
+                document.querySelector('meta[name="theme-color"]').setAttribute("content", "");
+            }
+        </script>
         <style>
             body {
                 touch-action: pan-x pan-y;
@@ -119,5 +125,11 @@
                 </td>
             </tr>
         </table>
+        <script>
+            window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', event => {
+                // const newColorScheme = event.matches ? "dark" : "light";
+                window.location.reload();
+            });
+        </script>
     </body>
 </html>
