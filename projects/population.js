@@ -16,7 +16,11 @@ function updatePop() {
     var currentPopRounded = Math.round(currentPopLinear);
     var currentPopFormatted = currentPopRounded.toLocaleString();
 
-    document.getElementById("population").innerHTML = currentPopFormatted;
+    if(window.location.pathname == "/projects/population_raw.html") {
+        document.getElementById("population").innerHTML = currentPopRounded;
+    } else {
+        document.getElementById("population").innerHTML = currentPopFormatted;
+    }
 }
 
 window.onload = updatePop;
