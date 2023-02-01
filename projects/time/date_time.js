@@ -6,7 +6,7 @@ Date.prototype.getDOY = function() {
     var onejanTimezoneOffsetMins = onejanOffsetMins - todayOffsetMins;
 
     var onejanFinal = new Date(this.getFullYear(), 0, 1, 0, onejanTimezoneOffsetMins);
-    return (Math.ceil((this - onejanFinal) / 86400000)) - 1;
+    return (Math.ceil((this - onejanFinal) / 86400000));
 }
 
 function updateTime() {

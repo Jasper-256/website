@@ -8,14 +8,14 @@ Date.prototype.getDOY = function() {
     var onejanTimezoneOffsetMins = onejanOffsetMins - todayOffsetMins;
 
     var onejanFinal = new Date(this.getFullYear(), 0, 1, 0, onejanTimezoneOffsetMins);
-    return (Math.ceil((this - onejanFinal) / 86400000)) - 1;
+    return (Math.ceil((this - onejanFinal) / 86400000));
 }
 
 Date.prototype.getUTCDOY = function() {
     var yearstart = new Date(this.getFullYear(), 0, 1);
     var timezoneOffset = yearstart.getTimezoneOffset();
     var onejan = new Date(this.getUTCFullYear(), 0, 1, -(timezoneOffset / 60));
-    return (Math.ceil((this.getTime() - onejan.getTime()) / 86400000)) - 1;
+    return (Math.ceil((this.getTime() - onejan.getTime()) / 86400000));
 }
 
 Date.prototype.getDozenalHours = function() {
