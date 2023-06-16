@@ -1,5 +1,5 @@
 function getHistory() {
-    theUrl = "https://script.google.com/macros/s/AKfycbzMscVnvXNBOjP-99B6MRTTm8Wy1wWW6y2eygJvQnvQIwIVGYU/exec"
+    theUrl = "https://script.google.com/macros/s/AKfycbx-vfVS8zmbSLrZ0zZDbUFUYV61m7-irPUxQrT5gDFI44ysfvhcQGFJY8YcOzlxM0tE/exec"
     // if (window.XMLHttpRequest) { // code for IE7+, Firefox, Chrome, Opera, Safari
     xmlhttp = new XMLHttpRequest();
     // }
