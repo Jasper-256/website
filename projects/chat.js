@@ -33,11 +33,12 @@ function startWorker() {
             w = new Worker("chat-worker.js");
         }
         w.onmessage = function(event) {
-            console.log("got data")
+            // console.log("got data")
             document.getElementById("history").innerHTML = event.data;
+            document.getElementById("frm").hidden = false;
         };
     } else {
-        document.getElementById("history").innerHTML = "Sorry, your browser does not support Web Workers...";
+        document.getElementById("history").innerHTML = "Sorry, your browser does not support web workers...";
     }
 }
 
@@ -49,7 +50,7 @@ function stopWorker() {
 function resetWorker() {
     stopWorker();
     startWorker();
-    console.log("reset worker")
+    // console.log("reset worker")
 }
 
 window.onload = startWorker();
