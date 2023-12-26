@@ -82,11 +82,6 @@ function startInterval(trackId2, dirc2) {
 function run() {
     for(i = 1; i <= rows; i++) {
         startInterval(String(i), true);
-        // if(i % 2 == 0) {
-        //     startInterval(String(i), true);
-        // } else {
-        //     startInterval(String(i), false);
-        // }
     }
 }
 

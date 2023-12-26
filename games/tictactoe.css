@@ -1,6 +1,5 @@
-body {
-    font-family: Menlo, monospace;
-    text-align: center;
+p, div, span {
+    font-family: 'Menlo', monospace;
 }
 
 .pointer {
