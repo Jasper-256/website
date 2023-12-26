@@ -201,7 +201,6 @@ function component(width, height, color, x, y, type) {
             }
             return crash;
         } catch(error) {
-            console.log("component.crashWith() function error: " + error);
             return false;
         }
     }
@@ -274,7 +273,6 @@ function updateGameArea() {
 
         var mouseCenterX = mouseX - (canvas.width / 2);
         var mouseCenterY = mouseY - (canvas.height / 2);
-        // console.log(mouseCenterX + ", " + mouseCenterY);
 
 
         if (keys && keys[67] && !autospinKeyDown) { // 67 is c key

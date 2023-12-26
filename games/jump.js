@@ -1,5 +1,8 @@
 let score = 0;
-let highScore = localStorage.getItem("hi");
+var highScore = localStorage.getItem("hi");
+if(highScore === null) {
+    highScore = "0";
+}
 document.getElementById("score").innerHTML = "HI " + highScore + " " + score;
 let rotation = 0;
 let threshold = 20;
@@ -44,7 +47,6 @@ function move() {
     
     document.getElementById("track").innerHTML = track;
     document.getElementById("1").innerHTML = upperTrack.join("");
-    // console.log(track);
     rotation++;
 
     putChar("1", charOn1);
@@ -69,14 +71,12 @@ function gameOverFunc() {
         localStorage.setItem("hi", highScore);
     }
     score = 0;
-    console.log("game over");
 }
 
 let intervalMS = 40;
 function run() {
     intervalMS = ((1 / ((score / 10) + 100)) * 2500) + 20;
     setTimeout(move, intervalMS);
-    console.log(intervalMS);
 }
 
 function putChar(on, add) {
@@ -123,19 +123,6 @@ document.onkeypress = function(e) {
     if(e.key == " " || String(e.key) == "Enter" || e.key == "j") {
         buttonClicked();
     }
-    console.log(e.key);
-    // let localCharOn173 = detChar("1");
-    // if(e.key.length == 1 && e.key != " ") {
-    //     sigChar = e.key;
-    // } else {
-    //     console.log("wierd charicter");
-    // }
-
-    // console.log(sigChar);
-    // if(localCharOn173) {
-    //     putChar("1", true);
-    // }
-    // buttonClicked();
 };
 
 function buttonClicked() {
@@ -144,16 +131,12 @@ function buttonClicked() {
         document.getElementById("title").innerHTML = "Playing";
         document.getElementById("button").innerHTML = "Jump";
     } else {
-        console.log("jump");
         if(detChar("1")) {
             putChar("1", false);
             putChar("2", true);
-            console.log(sigChar);
             setTimeout(jump1, 200);
             setTimeout(jump2, 400);
             setTimeout(jump3, 600);
-        } else {
-            console.log("no char on 1");
         }
     }
 }
