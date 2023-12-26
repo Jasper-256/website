@@ -11,7 +11,6 @@ function calculateE() {
     let iteration = 0;
     while (iteration < 42) {
         e += 1 / factorial(iteration);
-        console.log(e);
         iteration++;
         document.getElementById("e").innerHTML = e.toFixed(20);
     }

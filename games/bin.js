@@ -50,7 +50,6 @@ function setup() {
         text1 = text1 + text2 + text3 + text2 + text1 + text2 + text3 + text2;
 
         document.getElementById(String(i)).innerHTML = text1;
-        console.log(text1);
     }
 }
 

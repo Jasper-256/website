@@ -41,5 +41,3 @@ function restoreDark() {
 }
 
 restoreDark();
-
-// console.log(localStorage.getItem("dark"));

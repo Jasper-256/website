@@ -68,8 +68,6 @@ function c(sq) {
         ai();
 
         check();
-
-        console.log("done");
     }
 }
 
@@ -406,13 +404,10 @@ function ai() {
 
 
 
-    console.log("ai " + sqToGo);
 
     if(q(sqToGo) == "r") {
         o(sqToGo);
-        console.log("went");
     } else {
-        console.log("again");
         ai();
         return;
     }
@@ -420,7 +415,6 @@ function ai() {
 
 // Clear the bord
 function clr() {
-    console.log("clear");
     r(1);
     r(2);
     r(3);

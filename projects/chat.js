@@ -33,7 +33,6 @@ function startWorker() {
             w = new Worker("chat-worker.js");
         }
         w.onmessage = function(event) {
-            // console.log("got data")
             document.getElementById("history").innerHTML = event.data;
             document.getElementById("frm").hidden = false;
         };
@@ -50,7 +49,6 @@ function stopWorker() {
 function resetWorker() {
     stopWorker();
     startWorker();
-    // console.log("reset worker")
 }
 
 window.onload = startWorker();

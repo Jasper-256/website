@@ -20,7 +20,6 @@ function primeFactors(n) {
     if(n > 2) {
       factors.push(n);
     }
-    // console.log(Date.now());
     return factors;
 }
 
