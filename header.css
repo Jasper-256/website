@@ -45,6 +45,17 @@ td {
     border-radius: 10px 10px 10px 10px;
 }
 
+@media (max-width: 550px) {
+    .topnav {
+        display: flex;
+        justify-content: center;
+    }
+
+    .topnav a {
+        float: none;
+    }
+}
+
 @media (prefers-color-scheme: dark) {
     body {
         background-color: #1A1A1A;
