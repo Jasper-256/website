@@ -54,6 +54,6 @@ function isCorrect(challengeNum, userFactors) {
 function loadChallenge(challengeNum) {
     const zeroPad = (num, places) => String(num).padStart(places, '0')
     document.getElementById("challenge_num").textContent = zeroPad(challengeNum, 2);
-    document.title = "PFC-" + zeroPad(challengeNum, 2) + " - Jasper's Site"
+    document.title = "PFC-" + zeroPad(challengeNum, 2) + " - Jasper Morgal"
     document.getElementById("factor_text").textContent = getChallengeFactor(challengeNum) == 0n ? "Congratulations on completing all of the challenges, unless you skipped ahead" : "Find the prime factors of " + getChallengeFactor(challengeNum);
 }
