@@ -1,9 +1,32 @@
+body {
+    text-align: center;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+a {
+    color: blue;
+    text-decoration: none;
+}
+
+hr {
+    border: none;
+    height: 2px;
+    background-color: #D0D0D0;
+}
+
+table {
+    width: 100%;
+}
+
+td {
+    width: 50%;
+}
+
 .topnav {
     overflow: hidden;
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
 }
 
-/* Style the links inside the navigation bar */
 .topnav a {
     color: black;
     float: left;
@@ -12,12 +35,10 @@
     text-decoration: none;
 }
 
-/* Change the color of links on hover */
 .topnav a:hover {
     color: #5392da;
 }
 
-/* Add a color to the active/current link */
 .topnav a.active {
     background-color: #5392da;
     color: white;
@@ -33,18 +54,19 @@
     hr {
         background-color: #383838;
     }
-    
-    /* Style the links inside the navigation bar */
+
+    a {
+        color: #3B60F0;
+    }
+
     .topnav a {
         color: white;
     }
 
-    /* Change the color of links on hover */
     .topnav a:hover {
         color: #366192;
     }
 
-    /* Add a color to the active/current link */
     .topnav a.active {
         background-color: #366192;
         color: white;
