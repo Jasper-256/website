@@ -15,17 +15,10 @@ function updateTime() {
     var decimal_time = hoursday + minutesday + secondsday + millisecondsday;
     var rounded_percent_time = Math.round(decimal_time * 10000000) / 100000;
     
-    var end_cut_percent_time_reg = rounded_percent_time.toFixed(5);
-    var string_percent_time_reg = end_cut_percent_time_reg.toString().padStart(8, 0) + "%";
+    var end_cut_percent_time = rounded_percent_time.toFixed(5);
+    var string_percent_time = end_cut_percent_time.toString().padStart(8, 0) + "%";
 
-    var end_cut_percent_time_big = rounded_percent_time.toFixed(2);
-    var string_percent_time_big = end_cut_percent_time_big.toString().padStart(5, 0) + "%";
-
-    if(document.getElementById("type").innerHTML == "big") {
-        document.getElementById("time").innerHTML = string_percent_time_big;
-    } else {
-        document.getElementById("time").innerHTML = string_percent_time_reg;
-    }
+    document.getElementById("time").innerHTML = string_percent_time;
 }
 
 window.onload = updateTime;
