@@ -14,7 +14,7 @@ function updatePop() {
 
     var fileName = window.location.pathname.split("/").pop();
 
-    if(fileName == "population_raw.html") {
+    if(fileName == "population-raw.html") {
         document.getElementById("population").innerHTML = currentPopRounded;
     } else {
         document.getElementById("population").innerHTML = currentPopFormatted;

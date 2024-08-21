@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function() {
             infoTag.textContent = "You've entered the correct prime factors!";
             checkButton.textContent = "Next Challenge";
             checkButton.addEventListener("click", function() {
-                window.location.href = "prime_factorization.html?pfc=" + (challengeNum + 1);
+                window.location.href = "prime-factorization.html?pfc=" + (challengeNum + 1);
             });
         } else {
             infoTag.textContent = "Incorrect";
