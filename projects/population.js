@@ -1,11 +1,11 @@
 function updatePop() {
     var today = new Date();
-    var epoch = 1704067200000; // 2024-01-01
-    var popAtEpoch = 8126964000;
-    var popGrowthOverYear = 70017000;
+    var epoch = 1735689600000; // 2025-01-01T00:00:00.000Z
+    var popAtEpoch = 8196980849;
+    var popGrowthOverYear = 69264442;
 
     var timeAfterEpoch = today.getTime() - epoch;
-    var timeAfterEpochFraction = timeAfterEpoch / (366 * 24 * 60 * 60 * 1000); // Fraction of time to 2025-01-01 (2024 is a leap year)
+    var timeAfterEpochFraction = timeAfterEpoch / (365 * 24 * 60 * 60 * 1000); // Fraction of time to next year (2025 is NOT a leap year)
 
     var currentPopLinear = popAtEpoch + (timeAfterEpochFraction * popGrowthOverYear);
     
