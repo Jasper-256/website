@@ -14,5 +14,6 @@
         "gpt-oss-120b": "GPT-OSS",
         "llama-3.3-70b": "Llama 3.3",
         "qwen-3-235b-a22b-instruct-2507": "Qwen 3"
-    }
+    },
+    "chatNamingModel": "llama3.1-8b"
 }
