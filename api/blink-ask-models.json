@@ -15,5 +15,6 @@
         "llama-3.3-70b": "Llama 3.3",
         "qwen-3-235b-a22b-instruct-2507": "Qwen 3"
     },
-    "chatNamingModel": "llama3.1-8b"
+    "chatNamingModel": "llama3.1-8b",
+    "chatNamingSystemPrompt": "You are a chat naming model. Given the user's first message, respond with a very short, descriptive chat title (3-5 words). Use title case, no quotes, no punctuation, no emojis. Return only the title."
 }
