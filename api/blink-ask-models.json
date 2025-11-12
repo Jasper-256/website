@@ -9,5 +9,15 @@
         "zai-glm-4.6": "GLM 4.6"
     },
     "chatNamingModel": "llama3.1-8b",
-    "chatNamingSystemPrompt": "You are a chat naming model. Given the user's first message, respond with a very short, descriptive chat title (3-5 words). Use title case, no quotes, no punctuation, no emojis. Return only the title."
+    "chatNamingSystemPrompt": "You are a chat naming model. Given the user's first message, respond with a very short, descriptive chat title (3-5 words). Use title case, no quotes, no punctuation, no emojis. Return only the title.",
+    "modelBehaviors": {
+        "qwen-3-235b-a22b-thinking-2507": {
+            "thinking": {
+                "mode": "reasoning_field",
+                "streamField": "reasoning",
+                "startSequence": "<think>",
+                "endSequence": "</think>"
+            }
+        }
+    }
 }
