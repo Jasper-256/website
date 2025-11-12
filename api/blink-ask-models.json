@@ -1,6 +1,6 @@
 {
     "modelDisplayNames": {
-        "gpt-oss-120b": "gpt-oss-120b new",
+        "gpt-oss-120b": "gpt-oss-120b new2",
         "llama3.1-8b": null,
         "llama-3.3-70b": "Llama 3.3",
         "qwen-3-235b-a22b-instruct-2507": "Qwen 3 235B",
@@ -22,7 +22,7 @@
         "gpt-oss-120b": {
             "thinking": {
                 "mode": "reasoning_field",
-                "streamField": "content",
+                "streamField": "reasoning",
                 "startSequence": "<think>",
                 "endSequence": "</think>"
             }
@@ -30,7 +30,7 @@
         "zai-glm-4.6": {
             "thinking": {
                 "mode": "reasoning_field",
-                "streamField": "content",
+                "streamField": "reasoning",
                 "startSequence": "<think>",
                 "endSequence": "</think>"
             }
