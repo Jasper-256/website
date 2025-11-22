@@ -1,12 +1,12 @@
 {
     "modelDisplayNames": {
-        "gpt-oss-120b": "gpt-oss-120b new2",
+        "gpt-oss-120b": "gpt-oss-120b",
         "llama3.1-8b": null,
         "llama-3.3-70b": "Llama 3.3",
         "qwen-3-235b-a22b-instruct-2507": "Qwen 3 235B",
         "qwen-3-235b-a22b-thinking-2507": "Qwen 3 Thinking 235B",
         "qwen-3-32b": null,
-        "zai-glm-4.6": "GLM 4.6"
+        "zai-glm-4.6": null
     },
     "chatNamingModel": "llama3.1-8b",
     "chatNamingSystemPrompt": "You are a chat naming model. Given the user's first message, respond with a very short, descriptive chat title (3-5 words). Use title case, no quotes, no punctuation, no emojis. Return only the title.",
@@ -20,14 +20,6 @@
             }
         },
         "gpt-oss-120b": {
-            "thinking": {
-                "mode": "reasoning_field",
-                "streamField": "reasoning",
-                "startSequence": "<think>",
-                "endSequence": "</think>"
-            }
-        },
-        "zai-glm-4.6": {
             "thinking": {
                 "mode": "reasoning_field",
                 "streamField": "reasoning",
