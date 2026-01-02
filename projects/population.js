@@ -1,6 +1,6 @@
 function updatePop() {
     var today = new Date();
-    var epoch = 1767225600000; // 2026-01-01T00:00:00.000Z
+    var epoch = Date.UTC(2026, 0, 1);
     var popAtEpoch = 8266245291;
     var popGrowthOverYear = 68866209;
 
