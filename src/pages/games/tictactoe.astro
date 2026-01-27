@@ -1,0 +1,113 @@
+---
+import Layout from '@/layouts/Layout.astro';
+---
+
+<Layout title="Tic Tac Toe - Jasper Morgal">
+    <h1>Tic Tac Toe</h1>
+    <p>
+        <div>&nbsp;______&nbsp;______&nbsp;______&nbsp;</div>
+
+        <div>
+            <span>|</span><!--
+         --><span class="pointer" id="1a" onclick="c(1)">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><!--
+         --><span>|</span><!--
+         --><span class="pointer" id="2a" onclick="c(2)">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><!--
+         --><span>|</span><!--
+         --><span class="pointer" id="3a" onclick="c(3)">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><!--
+         --><span>|</span>
+        </div>
+        <div>
+            <span>|</span><!--
+         --><span class="pointer" id="1b" onclick="c(1)">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><!--
+         --><span>|</span><!--
+         --><span class="pointer" id="2b" onclick="c(2)">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><!--
+         --><span>|</span><!--
+         --><span class="pointer" id="3b" onclick="c(3)">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><!--
+         --><span>|</span>
+        </div>
+        <div>
+            <span>|</span><!--
+         --><span class="pointer" id="1c" onclick="c(1)">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><!--
+         --><span>|</span><!--
+         --><span class="pointer" id="2c" onclick="c(2)">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><!--
+         --><span>|</span><!--
+         --><span class="pointer" id="3c" onclick="c(3)">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><!--
+         --><span>|</span>
+        </div>
+
+        <div>|______|______|______|</div>
+
+        <div>
+            <span>|</span><!--
+         --><span class="pointer" id="4a" onclick="c(4)">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><!--
+         --><span>|</span><!--
+         --><span class="pointer" id="5a" onclick="c(5)">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><!--
+         --><span>|</span><!--
+         --><span class="pointer" id="6a" onclick="c(6)">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><!--
+         --><span>|</span>
+        </div>
+        <div>
+            <span>|</span><!--
+         --><span class="pointer" id="4b" onclick="c(4)">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><!--
+         --><span>|</span><!--
+         --><span class="pointer" id="5b" onclick="c(5)">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><!--
+         --><span>|</span><!--
+         --><span class="pointer" id="6b" onclick="c(6)">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><!--
+         --><span>|</span>
+        </div>
+        <div>
+            <span>|</span><!--
+         --><span class="pointer" id="4c" onclick="c(4)">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><!--
+         --><span>|</span><!--
+         --><span class="pointer" id="5c" onclick="c(5)">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><!--
+         --><span>|</span><!--
+         --><span class="pointer" id="6c" onclick="c(6)">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><!--
+         --><span>|</span>
+        </div>
+
+        <div>|______|______|______|</div>
+
+        <div>
+            <span>|</span><!--
+         --><span class="pointer" id="7a" onclick="c(7)">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><!--
+         --><span>|</span><!--
+         --><span class="pointer" id="8a" onclick="c(8)">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><!--
+         --><span>|</span><!--
+         --><span class="pointer" id="9a" onclick="c(9)">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><!--
+         --><span>|</span>
+        </div>
+        <div>
+            <span>|</span><!--
+         --><span class="pointer" id="7b" onclick="c(7)">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><!--
+         --><span>|</span><!--
+         --><span class="pointer" id="8b" onclick="c(8)">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><!--
+         --><span>|</span><!--
+         --><span class="pointer" id="9b" onclick="c(9)">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><!--
+         --><span>|</span>
+        </div>
+        <div>
+            <span>|</span><!--
+         --><span class="pointer" id="7c" onclick="c(7)">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><!--
+         --><span>|</span><!--
+         --><span class="pointer" id="8c" onclick="c(8)">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><!--
+         --><span>|</span><!--
+         --><span class="pointer" id="9c" onclick="c(9)">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><!--
+         --><span>|</span>
+        </div>
+
+        <div>|______|______|______|</div>
+    </p>
+    <p id="winloss">You Go First</p>
+    <p class="pointer" id="clear" hidden onclick="clr()">Reset</p>
+    <script is:inline src="/games/tictactoe.js"></script>
+</Layout>
+
+<style>
+    p, div, span {
+        font-family: 'Menlo', monospace;
+    }
+
+    .pointer {
+        cursor: pointer;
+    }
+</style>

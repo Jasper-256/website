@@ -1,0 +1,27 @@
+---
+import '@/styles/global.css';
+import TopNav from '@/components/TopNav.astro';
+
+interface Props {
+    title: string;
+    activePage?: 'home' | 'projects' | 'games';
+    faviconPath?: string;
+}
+
+const { title, activePage, faviconPath = '' } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="icon" type="image/png" href={`${faviconPath}/favicon-32x32.png`} sizes="32x32" />
+        <link rel="icon" type="image/png" href={`${faviconPath}/favicon-16x16.png`} sizes="16x16" />
+        <title>{title}</title>
+    </head>
+    <body>
+        <TopNav activePage={activePage} />
+        <slot />
+    </body>
+</html>
