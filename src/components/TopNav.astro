@@ -1,13 +1,13 @@
 ---
 interface Props {
-    activePage?: 'home' | 'projects' | 'games';
+  activePage?: "home" | "projects" | "games";
 }
 
 const { activePage } = Astro.props;
 ---
 
 <div class="topnav">
-    <a class={activePage === 'home' ? 'active' : ''} href="/">Home</a>
-    <a class={activePage === 'projects' ? 'active' : ''} href="/projects">Projects</a>
-    <a class={activePage === 'games' ? 'active' : ''} href="/games">Games</a>
+  <a class={activePage === "home" ? "active" : ""} href="/">Home</a>
+  <a class={activePage === "projects" ? "active" : ""} href="/projects">Projects</a>
+  <a class={activePage === "games" ? "active" : ""} href="/games">Games</a>
 </div>

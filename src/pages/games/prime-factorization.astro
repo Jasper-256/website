@@ -1,37 +1,37 @@
 ---
-import Layout from '@/layouts/Layout.astro';
+import Layout from "@/layouts/Layout.astro";
 ---
 
 <Layout title="PFC-01 - Jasper Morgal">
-    <h1>PFC-<span id="challenge_num">01</span></h1>
-    <p id="factor_text" style="word-break: break-all;">Please enable javascript</p>
-    <form id="form">
-        <p><input name="num_0" autocomplete="off" style="width: 200px;"/></p>
-        <p><input name="num_1" autocomplete="off" style="width: 200px;"/></p>
-        <p><button type="submit" id="check">Check</button></p>
-    </form>
-    <p id="info"></p>
-    <script is:inline src="/games/prime-factorization.js"></script>
+  <h1>PFC-<span id="challenge_num">01</span></h1>
+  <p id="factor_text" style="word-break: break-all;">Please enable javascript</p>
+  <form id="form">
+    <p><input name="num_0" autocomplete="off" style="width: 200px;" /></p>
+    <p><input name="num_1" autocomplete="off" style="width: 200px;" /></p>
+    <p><button type="submit" id="check">Check</button></p>
+  </form>
+  <p id="info"></p>
+  <script is:inline src="/games/prime-factorization.js"></script>
 </Layout>
 
 <style is:global>
+  button {
+    color: black;
+    background-color: white;
+    border: 1px solid #d0d0d0;
+    border-radius: 4px;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    input {
+      background-color: #202020;
+      color: white;
+    }
+
     button {
-        color: black;
-        background-color: white;
-        border: 1px solid #D0D0D0;
-        border-radius: 4px;
+      color: #b4b4b4;
+      background-color: #202020;
+      border: 1px solid #383838;
     }
-
-    @media (prefers-color-scheme: dark) {
-        input {
-            background-color: #202020;
-            color: white;
-        }
-
-        button {
-            color: #B4B4B4;
-            background-color: #202020;
-            border: 1px solid #383838;
-        }
-    }
+  }
 </style>

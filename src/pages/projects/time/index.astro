@@ -1,79 +1,79 @@
 ---
-import Layout from '@/layouts/Layout.astro';
+import Layout from "@/layouts/Layout.astro";
 ---
 
 <Layout title="All Time Formats - Jasper Morgal">
-    <h1>All Time Formats</h1>
-    <table>
-        <tr>
-            <td>
-                <h2>24 Hour Time</h2>
-                <p class="monobig" id="time"></p>
-            </td>
-            <td>
-                <h2>Decimal Time</h2>
-                <p class="monobig" id="decimal"></p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <h2><a href="/projects/time/dozenal-time">Dozenal Time</a></h2>
-                <p class="monobig" id="dozenal"></p>
-            </td>
-            <td>
-                <h2><a href="/projects/time/percent-time">Percent Time</a></h2>
-                <p class="monobig" id="percent"></p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <h2><a href="/projects/time/seximal-time">Seximal Time</a></h2>
-                <p class="monobig" id="seximal"></p>
-            </td>
-            <td>
-                <h2>Milliday Time</h2>
-                <p class="monobig" id="milliday"></p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <h2>Unix Time</h2>
-                <p class="monobig" id="unix"></p>
-            </td>
-            <td>
-                <h2>Decimal Unix</h2>
-                <p class="monobig" id="decimalunix"></p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <h2>Date</h2>
-                <p class="monobig" id="date"></p>
-            </td>
-            <td>
-                <h2><a href="/projects/time/ordinal-date-time">Ordinal Date</a></h2>
-                <p class="monobig" id="ordinal"></p>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <h2>Timezone Offset</h2>
-                <p class="monobig" id="offset"></p>
-            </td>
-            <td>
-                <h2>UTC</h2>
-                <p>
-                    <input type="checkbox" onchange="toggle(this)">
-                </p>
-            </td>
-        </tr>
-    </table>
-    <script is:inline src="/projects/time/time.js"></script>
+  <h1>All Time Formats</h1>
+  <table>
+    <tr>
+      <td>
+        <h2>24 Hour Time</h2>
+        <p class="monobig" id="time"></p>
+      </td>
+      <td>
+        <h2>Decimal Time</h2>
+        <p class="monobig" id="decimal"></p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <h2><a href="/projects/time/dozenal-time">Dozenal Time</a></h2>
+        <p class="monobig" id="dozenal"></p>
+      </td>
+      <td>
+        <h2><a href="/projects/time/percent-time">Percent Time</a></h2>
+        <p class="monobig" id="percent"></p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <h2><a href="/projects/time/seximal-time">Seximal Time</a></h2>
+        <p class="monobig" id="seximal"></p>
+      </td>
+      <td>
+        <h2>Milliday Time</h2>
+        <p class="monobig" id="milliday"></p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <h2>Unix Time</h2>
+        <p class="monobig" id="unix"></p>
+      </td>
+      <td>
+        <h2>Decimal Unix</h2>
+        <p class="monobig" id="decimalunix"></p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <h2>Date</h2>
+        <p class="monobig" id="date"></p>
+      </td>
+      <td>
+        <h2><a href="/projects/time/ordinal-date-time">Ordinal Date</a></h2>
+        <p class="monobig" id="ordinal"></p>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <h2>Timezone Offset</h2>
+        <p class="monobig" id="offset"></p>
+      </td>
+      <td>
+        <h2>UTC</h2>
+        <p>
+          <input type="checkbox" onchange="toggle(this)" />
+        </p>
+      </td>
+    </tr>
+  </table>
+  <script is:inline src="/projects/time/time.js"></script>
 </Layout>
 
 <style>
-    .monobig {
-        font-size: 14pt;
-        font-family: Menlo, monospace;
-    }
+  .monobig {
+    font-size: 14pt;
+    font-family: Menlo, monospace;
+  }
 </style>

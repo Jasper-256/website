@@ -1,37 +1,37 @@
 ---
-import Layout from '@/layouts/Layout.astro';
+import Layout from "@/layouts/Layout.astro";
 ---
 
 <Layout title="Public Chat - Jasper Morgal">
-    <h1>Public Chat</h1>
-    <p id="history">Loading...</p>
-    <form id="frm" hidden>
-        <input type="text" name="Message" placeholder="Message" maxlength="50" size="40" required/>
-        <button type="submit" id="submit-form">Send</button>
-    </form>
-    <p id="status"></p>
-    <script is:inline src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script is:inline src="/projects/chat.js"></script>
+  <h1>Public Chat</h1>
+  <p id="history">Loading...</p>
+  <form id="frm" hidden>
+    <input type="text" name="Message" placeholder="Message" maxlength="50" size="40" required />
+    <button type="submit" id="submit-form">Send</button>
+  </form>
+  <p id="status"></p>
+  <script is:inline src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script is:inline src="/projects/chat.js"></script>
 </Layout>
 
 <style is:global>
+  button {
+    color: black;
+    background-color: white;
+    border: 1px solid #d0d0d0;
+    border-radius: 4px;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    input {
+      background-color: #202020;
+      color: white;
+    }
+
     button {
-        color: black;
-        background-color: white;
-        border: 1px solid #D0D0D0;
-        border-radius: 4px;
+      color: #b4b4b4;
+      background-color: #202020;
+      border: 1px solid #383838;
     }
-
-    @media (prefers-color-scheme: dark) {
-        input {
-            background-color: #202020;
-            color: white;
-        }
-
-        button {
-            color: #B4B4B4;
-            background-color: #202020;
-            border: 1px solid #383838;
-        }
-    }
+  }
 </style>

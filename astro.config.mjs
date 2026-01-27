@@ -1,18 +1,18 @@
 // @ts-check
-import { defineConfig } from 'astro/config';
-import tailwindcss from '@tailwindcss/vite';
+import { defineConfig } from "astro/config";
+import tailwindcss from "@tailwindcss/vite";
 
 // https://astro.build/config
 export default defineConfig({
-  output: 'static',
-  trailingSlash: 'never',
+  output: "static",
+  trailingSlash: "never",
   build: {
-    format: 'file'
+    format: "file",
   },
   vite: {
-    plugins: [tailwindcss()]
+    plugins: [tailwindcss()],
   },
   redirects: {
-    '/projects/time/percent_time_raw': '/projects/time/percent-time-raw'
-  }
+    "/projects/time/percent_time_raw": "/projects/time/percent-time-raw",
+  },
 });

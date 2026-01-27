@@ -1,31 +1,31 @@
 ---
-import Layout from '@/layouts/Layout.astro';
+import Layout from "@/layouts/Layout.astro";
 ---
 
 <Layout title="Endless Scroll - Jasper Morgal">
-    <h1>Endless Scroll</h1>
-    <p>A safe place where you can scroll endlessly through nothing...</p>
-    <p></p>
-    <div id="innerdiv"></div>
-    <script is:inline src="/projects/scroll.js"></script>
+  <h1>Endless Scroll</h1>
+  <p>A safe place where you can scroll endlessly through nothing...</p>
+  <p></p>
+  <div id="innerdiv"></div>
+  <script is:inline src="/projects/scroll.js"></script>
 </Layout>
 
 <style>
-    :global(#innerdiv div) {
-        margin: auto;
-    }
+  :global(#innerdiv div) {
+    margin: auto;
+  }
 
-    :global(.circle) {
-        height: 50px;
-        width: 50px;
-        background-color: #555;
-        border-radius: 50%;
-    }
+  :global(.circle) {
+    height: 50px;
+    width: 50px;
+    background-color: #555;
+    border-radius: 50%;
+  }
 
-    :global(.square) {
-        height: 50px;
-        width: 50px;
-        border-radius: 3pt;
-        background-color: #555;
-    }
+  :global(.square) {
+    height: 50px;
+    width: 50px;
+    border-radius: 3pt;
+    background-color: #555;
+  }
 </style>
