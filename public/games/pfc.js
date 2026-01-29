@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
       infoTag.textContent = "You've entered the correct prime factors!";
       checkButton.textContent = "Next Challenge";
       checkButton.addEventListener("click", function () {
-        window.location.href = "prime-factorization?pfc=" + (challengeNum + 1);
+        window.location.href = "pfc?pfc=" + (challengeNum + 1);
       });
     } else {
       infoTag.textContent = "Incorrect";
@@ -36,7 +36,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 function getChallengeFactor(challengeNum) {
   const challenges = [
-    6n,
+    4n,
     15n,
     209n,
     47077n,
@@ -72,6 +72,6 @@ function isCorrect(challengeNum, userFactors) {
 function loadChallenge(challengeNum) {
   const zeroPad = (num, places) => String(num).padStart(places, "0");
   document.getElementById("challenge_num").textContent = zeroPad(challengeNum, 2);
-  document.title = "PFC-" + zeroPad(challengeNum, 2) + " - Jasper Morgal";
+  document.title = "PFC" + zeroPad(challengeNum, 2) + " - Jasper Morgal";
   document.getElementById("factor_text").textContent = getChallengeFactor(challengeNum) == 0n ? "Congratulations on completing all of the challenges, unless you skipped ahead" : "Find the prime factors of " + getChallengeFactor(challengeNum);
 }

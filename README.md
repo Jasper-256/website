@@ -21,7 +21,7 @@ A collection of unique and interesting time representations displayed in real-ti
 ## Games
 
 - **[Tic Tac Toe](https://jaspermorgal.com/games/tictactoe)** - Unbeatable tic tac toe game.
-- **[Prime Factorization Challenge](https://jaspermorgal.com/games/prime-factorization)** - See how big of prime numbers you can factor.
+- **[Prime Factorization Challenge](https://jaspermorgal.com/games/pfc)** - See how big of prime numbers you can factor.
 - **[Jump Game](https://jaspermorgal.com/games/jump)** - A simple ASCII jumping game.
 
 ## Tech Stack

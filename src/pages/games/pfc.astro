@@ -2,8 +2,8 @@
 import Layout from "@/layouts/Layout.astro";
 ---
 
-<Layout title="PFC-01 - Jasper Morgal">
-  <h1>PFC-<span id="challenge_num">01</span></h1>
+<Layout title="PFC01 - Jasper Morgal">
+  <h1>PFC<span id="challenge_num">01</span></h1>
   <p id="factor_text" style="word-break: break-all;">Please enable javascript</p>
   <form id="form">
     <p><input name="num_0" autocomplete="off" style="width: 200px;" /></p>
@@ -11,7 +11,7 @@ import Layout from "@/layouts/Layout.astro";
     <p><button type="submit" id="check">Check</button></p>
   </form>
   <p id="info"></p>
-  <script is:inline src="/games/prime-factorization.js"></script>
+  <script is:inline src="/games/pfc.js"></script>
 </Layout>
 
 <style is:global>
