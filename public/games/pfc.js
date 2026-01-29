@@ -1,8 +1,13 @@
+const maxChallengeNum = 16;
+
 document.addEventListener("DOMContentLoaded", function () {
   const urlParams = new URLSearchParams(window.location.search);
   let challengeNum = parseInt(urlParams.get("pfc")) || 1;
   if (challengeNum < 1) {
     challengeNum = 1;
+  }
+  if (challengeNum > maxChallengeNum) {
+    challengeNum = maxChallengeNum;
   }
   loadChallenge(challengeNum);
 
@@ -73,5 +78,5 @@ function loadChallenge(challengeNum) {
   const zeroPad = (num, places) => String(num).padStart(places, "0");
   document.getElementById("challenge_num").textContent = zeroPad(challengeNum, 2);
   document.title = "PFC" + zeroPad(challengeNum, 2) + " - Jasper Morgal";
-  document.getElementById("factor_text").textContent = getChallengeFactor(challengeNum) == 0n ? "Congratulations on completing all of the challenges, unless you skipped ahead" : "Find the prime factors of " + getChallengeFactor(challengeNum);
+  document.getElementById("factor_text").innerHTML = challengeNum >= maxChallengeNum ? "There's no more challenges yet, but that doesn't matter because the likelihood that you skipped ahead is ≈100%" : "Find the two prime factors of" + (challengeNum >= 6 ? ":<br>" : " ") + getChallengeFactor(challengeNum);
 }
