@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
     clearTimeout(this.timeout);
     const userFactors = Array.from(document.querySelectorAll("input[name^='num_']")).map((input) => {
       try {
-        return BigInt(input.value);
+        return BigInt(input.value.replace(/[^0-9]/g, ""));
       } catch (error) {
         return 0n;
       }
@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const checkButton = document.getElementById("check");
 
     if (isCorrect(challengeNum, userFactors)) {
-      infoTag.textContent = "You've entered the correct prime factors!";
+      infoTag.textContent = "You found the correct prime factors";
       checkButton.textContent = "Next Challenge";
       checkButton.addEventListener("click", function () {
         window.location.href = "pfc?pfc=" + (challengeNum + 1);
