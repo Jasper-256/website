@@ -78,5 +78,14 @@ function loadChallenge(challengeNum) {
   const zeroPad = (num, places) => String(num).padStart(places, "0");
   document.getElementById("challenge_num").textContent = zeroPad(challengeNum, 2);
   document.title = "PFC" + zeroPad(challengeNum, 2) + " - Jasper Morgal";
-  document.getElementById("factor_text").innerHTML = challengeNum >= maxChallengeNum ? "There's no more challenges yet, but that doesn't matter because the likelihood that you skipped ahead is ≈100%" : "Find the two prime factors of" + (challengeNum >= 6 ? ":<br>" : " ") + getChallengeFactor(challengeNum);
+
+  const factorText = document.getElementById("factor_text");
+  if (challengeNum >= maxChallengeNum) {
+    factorText.style.wordBreak = "";
+    factorText.innerHTML = "There's no more challenges yet, but that doesn't matter because the likelihood that you skipped ahead is ≈100%";
+  } else {
+    factorText.style.wordBreak = "break-all";
+    const separator = challengeNum >= 6 ? ":<br>" : " ";
+    factorText.innerHTML = "Find the two prime factors of" + separator + getChallengeFactor(challengeNum);
+  }
 }
