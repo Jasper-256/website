@@ -1,0 +1,49 @@
+---
+import Layout from "@/layouts/Layout.astro";
+---
+
+<Layout title="Othello - Jasper Morgal">
+  <h1>Othello</h1>
+  <p id="score">Black: 2 | White: 2</p>
+  <canvas id="board"></canvas>
+  <p id="status">Your turn (Black)</p>
+  <p>
+    <label
+      >Depth:
+      <select id="depth">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4" selected>4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+      </select>
+    </label>
+  </p>
+  <p class="pointer" id="newgame">New Game</p>
+  <script>
+    import "@/scripts/games/othello";
+  </script>
+</Layout>
+
+<style>
+  p,
+  div,
+  label,
+  select {
+    font-family: "Menlo", monospace;
+  }
+  .pointer {
+    cursor: pointer;
+  }
+  canvas {
+    display: block;
+    max-width: 480px;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    border-radius: 4px;
+    margin: 0 auto;
+  }
+</style>
